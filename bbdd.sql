@@ -4,6 +4,18 @@ IF NOT EXISTS dragones;
 USE dragones;
 
 -- -----------------------------------------------------
+-- Tabla categorias
+-- -----------------------------------------------------
+CREATE TABLE
+IF NOT EXISTS categorias
+(id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+nombre VARCHAR
+(45) NOT NULL,
+PRIMARY KEY
+(id)
+)ENGINE = InnoDB;
+
+-- -----------------------------------------------------
 -- Tabla dragones
 -- -----------------------------------------------------
 CREATE TABLE
@@ -15,13 +27,13 @@ imagen VARCHAR
 (60) NOT NULL DEFAULT 'default.jpg',
 descripcion TEXT
 (1000), 
-categoria_id INT UNSIGNED,
+categorias_id INT UNSIGNED,
 
 PRIMARY KEY
 (id),
 
 FOREIGN KEY
-(categoria_id) REFERENCES categoria
+(categorias_id) REFERENCES categorias
 (id) ON
 DELETE
 SET NULL
@@ -52,22 +64,22 @@ IF NOT EXISTS usuarios
 -- CATEGORÍAS
 
 INSERT INTO categorias
-    (nombre)
+  (nombre)
 VALUES
-    -- 1:
-    ('Celta'),
-    -- 2:
-    ('China'),
-    -- 3:    
-    ('Griega'),
-    -- 4:
-    ('Nórdica'),
-    -- 5:
-    ('Japonesa'),
-    -- 6:
-    ('Mesoamericana'),
-    -- 7:
-    ('Mesopotámica');
+  -- 1:
+  ('Celta'),
+  -- 2:
+  ('China'),
+  -- 3:    
+  ('Griega'),
+  -- 4:
+  ('Nórdica'),
+  -- 5:
+  ('Japonesa'),
+  -- 6:
+  ('Mesoamericana'),
+  -- 7:
+  ('Mesopotámica');
 
 -- DRAGONES
 

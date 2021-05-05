@@ -17,7 +17,7 @@ class Dragon implements JsonSerializable
     {
         return [
             'id'            => $this->getId(),
-            'categoria_id'  => $this->getCategoriaId(),
+            'categorias_id'  => $this->getCategoriasId(),
             'nombre'        => $this->getNombre(),
             'descripcion'   => $this->getDescripcion(),
             'imagen'        => $this->getImagen(),
@@ -44,7 +44,7 @@ class Dragon implements JsonSerializable
             // En cada vuelta, instanciamos un dragón para almacenar los datos del registro.
             $dragon = new self();
             $dragon->setId($fila['id']);
-            $dragon->setCategoriaId($fila['categoria_id']);
+            $dragon->setCategoriasId($fila['categorias_id']);
             $dragon->setNombre($fila['nombre']);
             $dragon->setDescripcion($fila['descripcion']);
             $dragon->setImagen($fila['imagen']);
@@ -69,8 +69,8 @@ class Dragon implements JsonSerializable
     public function crear(array $data): bool
     {
         $db = DBConnection::getConnection();
-        $query = "INSERT INTO dragones (categoria_id, nombre, descripcion) 
-                  VALUES (:categoria_id, :nombre, :descripcion)";
+        $query = "INSERT INTO dragones (categorias_id, nombre, descripcion) 
+                  VALUES (:categorias_id, :nombre, :descripcion)";
         $stmt = $db->prepare($query);
 
         if(!$stmt->execute($data)) {
@@ -100,7 +100,7 @@ class Dragon implements JsonSerializable
     /**
      * @param mixed $id
      */
-    public function setIdProducto($id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -108,17 +108,17 @@ class Dragon implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getCategoriaId()
+    public function getCategoriasId()
     {
-        return $this->categoria_id;
+        return $this->categorias_id;
     }
 
     /**
-     * @param mixed $categoria_id
+     * @param mixed $categorias_id
      */
-    public function setCategoriaId($categoria_id)
+    public function setCategoriasId($categorias_id)
     {
-        $this->categoria_id = $categoria_id;
+        $this->categorias_id = $categorias_id;
     }
 
     /**
