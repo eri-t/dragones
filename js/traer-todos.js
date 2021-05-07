@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () {
     function traerTodos() {
         fetch('api/dragones.php')
@@ -25,4 +26,3 @@ document.addEventListener('DOMContentLoaded', function () {
     elBoton.addEventListener('click', function () {
         traerTodos();
     });
-});
