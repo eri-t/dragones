@@ -1,3 +1,10 @@
+.navbar {
+    background-color: rgba(0, 0, 0, .800);
+    color: white;
+   /* position: fixed;
+    z-index: 999;*/
+    width: 100%;
+}
 header {
     background-image: url(../img/dragon_2_cambio_2.jpg);
     background-position: center;
@@ -20,4 +27,43 @@ header p {
     font-family: 'IM Fell Double Pica', serif;
     font-style: italic;
     text-shadow: 5px 5px 30px #b90202;
+}
+
+.separador {
+    background-image: url(../img/separador.jpg);
+    height: 4em;
+}
+
+#dragones {
+    background-image: url(../img/background.jpg);
+    text-align: center;
+}
+
+#btnTraerTodos {
+    line-height: 1;
+    text-transform: uppercase;
+    border: .05em solid rgb(102, 0, 0) ;
+    background-color: rgb(102, 0, 0);
+    color: rgb(255, 238, 204);
+    font-weight: bold;
+    text-shadow: rgb(0 0 0 / 60%) 0px 1px 2px, rgb(0 0 0 / 40%) 0px 2px 4px;
+    background-image: url(../img/boton.jpg);
+    background-position: center center;
+    font-family: "Reggae One", cursive;
+    letter-spacing: 0.025em;
+    font-size: 1.125em;
+    height: 70px;
+    padding: 0px 35px;
+    box-shadow: inset 0 0 25px 1px rgb(0,0,0);
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#btnTraerTodos:focus{
+    outline: 0px;
+}
+
+.dragon{
+    background-color: rgba(68, 68, 68, 0.3);
+    color: #f2f2f2;
 }
