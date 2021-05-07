@@ -7,11 +7,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 const div = document.getElementById('respuesta');
                 let salida = "";
                 for (let i = 0; i < dragones.length; i++) {
-                    salida += `<div>
-                                <h2>${dragones[i].nombre}</h2>
-                                <p>Descripción:</p>
-                                <p>${dragones[i].descripcion}</p>
-                            </div>`;
+                    salida += `
+                    <div class="card ml-4 mt-3 dragon" style="width: 18rem;">
+                        <img class="card-img-top" src="${dragones[i].imagen}" alt="${dragones[i].nombre}">
+                        <div class="card-body">
+                            <h5 class="card-title">${dragones[i].nombre}</h5>
+                            <p class="card-text">${dragones[i].descripcion}</p>
+                        </div>
+                        </div>`;
                 }
                 div.innerHTML = salida;
             });
