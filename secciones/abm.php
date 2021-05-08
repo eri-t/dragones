@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!isset($_SESSION["id"])) {
+    header('Location: login.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,6 +19,7 @@
   <title>Dragones</title>
 </head>
 <body>
+    <body>
         <nav class="navbar navbar-expand-lg navbar-dark">
           <div class="container-fluid">
             <a class="navbar-brand" href="#">Dragones</a>
@@ -22,40 +30,54 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+                  <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="abm.html">ABM</a>
+                  <a class="nav-link" href="#">ABM</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Iniciar Sesión</a>
+                  <a class="nav-link" href="../login.php">Iniciar Sesión</a>
                 </li>
               </ul>
             </div>
           </div>
         </nav>
 
-        <section class="container-fluid" id="login">
-            <div class="row pt-5 justify-content-center">
-            <div class="card loginCard">
-                <h2 class="card-header">Iniciar Sesión</h2>
-                <div class="card-body">
-                <form action="#" method="post">
-                  <div class="form-group">
-                    <label for="usuario">Email o Usuario</label>
-                    <input type="text" class="form-control" id="usuario" name="usuario">
-                  </div>
-                  <div class="form-group">
-                    <label for="pswd">Contraseña</label>
-                    <input type="password" class="form-control" id="pswd" name="pswd">
-                  </div>
-                  <div class="d-flex align-items-center justify-content-center">
-                     <button type="submit" class="btn mt-3" id="iniciarSesion">Iniciar Sesión</button>
-                  </div>
-                </form>
-                    </div>
-                    </div>
+        <section class="container-fluid" id="tablaAbm">
+            <button id="agregarDragon" type="button" >Agregar Dragón</button>
+            <div class="container-fluid">
+                <div class="row justify-content-center pb-3">
+                    <table class="table tabla">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td colspan="2">Larry the Bird</td>
+                            <td>@twitter</td>
+                          </tr>
+                        </tbody>
+                      </table>
                 </div>
+              </div>
         </section>
         <div class="separador"></div>
         <footer class="container-fluid">

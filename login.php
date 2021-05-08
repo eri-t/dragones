@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!isset($_SESSION["id"])) {
+    header('Location: login.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -23,13 +30,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+                  <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">ABM</a>
+                  <a class="nav-link" href="secciones/abm.php">ABM</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="login.html">Iniciar Sesión</a>
+                  <a class="nav-link" href="#">Iniciar Sesión</a>
                 </li>
               </ul>
             </div>
