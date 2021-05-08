@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -27,10 +28,10 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="html/abm.html">ABM</a>
+            <a class="nav-link" href="secciones/abm.php">ABM</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="html/login.html">Iniciar Sesión</a>
+            <a class="nav-link" href="login.php">Iniciar Sesión</a>
           </li>
         </ul>
       </div>
