@@ -5,7 +5,6 @@
     z-index: 999;*/
     width: 100%;
 }
-
 header {
     background-image: url(../img/dragon_2_cambio_2.jpg);
     background-position: center;
@@ -35,7 +34,7 @@ header p {
     height: 4em;
 }
 
-#dragones {
+#dragones, #agregarPagina {
     background-image: url(../img/background.jpg);
     text-align: center;
 }
@@ -48,7 +47,7 @@ header p {
 
 #login {
     background-image: url(../img/background.jpg);
-    height: 60vh;
+    height: 70vh;
 }
 
 #btnTraerTodos  {
@@ -75,7 +74,7 @@ header p {
     outline: 0px;
 }
 
-#iniciarSesion, #agregarDragon  {
+#iniciarSesion, #agregarDragon, #botonAgregar  {
     line-height: 1;
     text-transform: uppercase;
     border: .05em solid rgb(102, 0, 0) ;
@@ -100,6 +99,11 @@ header p {
 
 .loginCard {
     width: 50%;
+    background-color: rgba(68, 68, 68, 0.5);
+    color: #f2f2f2;
+}
+
+.card-agregar {
     background-color: rgba(68, 68, 68, 0.5);
     color: #f2f2f2;
 }
