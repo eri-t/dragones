@@ -41,12 +41,12 @@
     <h1>Dragones</h1>
     <p>Sumérgete en este fantástico universo</p>
   </header>
-  
+
   <main>
     <div class="separador"></div>
     <section id="dragones">
-    
-      <button id="btnTraerTodos" type="button" >Traer todos los dragones</button>
+
+      <button id="btnTraerTodos" type="button">Ver todos los dragones</button>
 
       <!-- Acá vamos a imprimir los productos. -->
       <div class="container-fluid">
@@ -59,7 +59,7 @@
     <script src="js/traer-todos.js"></script>
   </main>
   <footer class="container-fluid">
-    <div class="text-center"> 
+    <div class="text-center">
       <img src="img/dragon_footer.png" alt="dragon chino">
       <p>© ERICA TORRICO & FLORENCIA MELLONE</p>
       <p>Parcial 1 | Programación 3 | Clientes Web Mobile</p>

@@ -19,15 +19,16 @@ switch($_SERVER['REQUEST_METHOD']) {
 
             echo json_encode(mysqli_fetch_assoc($res));
             */
+            $id = $_GET['id'];
+            $dragon = new Dragon;
+            $dragon_por_id = $dragon->traerPorPk($id);
+            echo json_encode($dragon_por_id);
+
         } else {
-
-$dragon = new Dragon;
-$dragones = $dragon->traerTodo();
-
+            $dragon = new Dragon;
+            $dragones = $dragon->traerTodo();
             echo json_encode($dragones);
         }
-    //        $productos = productosTraerTodos($db);
-    //        echo json_encode($productos);
         break;
 
     case 'POST':
@@ -93,6 +94,10 @@ $dragones = $dragon->traerTodo();
         // DELETE se comporta en general igual que GET.
         // Pasan los datos en el query string, como el id del producto a eliminar, y los capturan
         // en php con $_GET.
+        $id = $_GET['id'];
+        $dragon = new Dragon;
+        $dragones = $dragon->eliminar($id);
+
         break;
 
     default:
