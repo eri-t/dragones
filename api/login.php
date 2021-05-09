@@ -1,6 +1,21 @@
 <?php
 header("Content-Type: application/json");
 
+if(isset($_SESSION["id"])) {
+    header("Location: index.php");
+    exit;
+}
+/*
+$email = trim($_POST['email']);
+$password = $_POST['password'];
+
+$auth = new Auth();
+if($auth->login($email, $password)) {
+    header('Location: ../secciones/abm.php');
+} else {
+    header('Location: ../login.php');
+}
+*/
 session_start();
 
 $db = mysqli_connect('localhost', 'root', '', 'dragones');
@@ -35,4 +50,3 @@ if($fila = mysqli_fetch_assoc($res)) {
 echo json_encode([
     'success' => false,
 ]);
-?>
