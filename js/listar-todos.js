@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     function listarTodos() {
-        fetch('api/dragones.php')
+        fetch('../api/dragones.php')
             .then(response => response.json())
             .then(dragones => {
                 const div = document.getElementById('respuesta');
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <td> ${dragones[i].nombre} </td>
                         <td> ${dragones[i].categorias_id} </td> 
                         <td> ${dragones[i].descripcion} </td> 
-                        <td> <img src="${dragones[i].imagen}" alt="${dragones[i].nombre}" class="img-fluid"> </td> 
+                        <td> <img src="../${dragones[i].imagen}" alt="${dragones[i].nombre}" class="img-fluid"> </td> 
                         <td>
                             <div class="btn-group">
                                 <button type="button" class="btn btn-outline-light">Acciones</button>

@@ -34,7 +34,9 @@ class Dragon implements JsonSerializable
         // Pedimos la conexión a la clase DBConnection...
         $db = DBConnection::getConnection();
 
-        $query = "SELECT * FROM dragones LEFT JOIN categorias ON categorias_id = categorias.id";
+        $query = "SELECT * FROM dragones
+        /* LEFT JOIN categorias ON categorias_id = categorias.id*/
+        ";
         $stmt = $db->prepare($query);
         $stmt->execute();
 
