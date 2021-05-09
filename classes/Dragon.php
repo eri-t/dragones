@@ -17,7 +17,7 @@ class Dragon implements JsonSerializable
     {
         return [
             'id'            => $this->getId(),
-            'categorias_id'  => $this->getCategoriasId(),
+            'categorias_id' => $this->getCategoriasId(),
             'nombre'        => $this->getNombre(),
             'descripcion'   => $this->getDescripcion(),
             'imagen'        => $this->getImagen(),
@@ -34,7 +34,7 @@ class Dragon implements JsonSerializable
         // Pedimos la conexión a la clase DBConnection...
         $db = DBConnection::getConnection();
 
-        $query = "SELECT * FROM dragones";
+        $query = "SELECT * FROM dragones LEFT JOIN categorias ON categorias_id = categorias.id";
         $stmt = $db->prepare($query);
         $stmt->execute();
 
@@ -55,9 +55,33 @@ class Dragon implements JsonSerializable
         return $salida;
     }
 
-    public function traerPorPK($id)
+    /**
+     * Retorna el dragón al que pertenece la $pk.
+     * De no existir, retorna null.
+     *
+     * @param int $pk
+     * @return Dragon|null
+     */
+    public function traerPorPK(int $id)
     {
         $db = DBConnection::getConnection();
+
+        $query = "SELECT * FROM dragones WHERE id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->execute([$id]);
+
+        // Si no podemos obtener la fila, retornamos null.
+        if(!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            return null;
+        }
+            $dragon = new self();
+            $dragon->setId($fila['id']);
+            $dragon->setCategoriasId($fila['categorias_id']);
+            $dragon->setNombre($fila['nombre']);
+            $dragon->setDescripcion($fila['descripcion']);
+            $dragon->setImagen($fila['imagen']);
+
+            return $dragon;
     }
 
     /**
@@ -84,9 +108,30 @@ class Dragon implements JsonSerializable
         $db = DBConnection::getConnection();
     }
 
-    public function eliminar()
+    public function eliminar(int $id)
     {
         $db = DBConnection::getConnection();
+        $query = "SELECT * FROM dragones WHERE id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->execute([$id]);
+
+        if(!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            // ver qué hacer si no lo encuentra
+            echo('no lo encuentra');
+        }
+
+     //   $queryEliminar = "UPDATE dragones SET existe = 0 WHERE id = ?";
+        $queryEliminar = "DELETE FROM dragones WHERE id = ?";
+        $stmt = $db->prepare($queryEliminar);
+        $stmt->execute([$id]);
+
+        // hacer algo si sale mal
+/*
+        if($dragon["imagen"] != 'default.jpg'):
+            unlink(ROOT . $dragon["imagen"]);
+        endif;
+*/
+        // mensaje de éxito
     }
 
     /**
