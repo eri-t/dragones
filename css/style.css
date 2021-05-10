@@ -42,7 +42,7 @@ header p {
 #tablaAbm {
     background-image: url(../img/background.jpg);
     text-align: center;
-    height: 75vh;
+  /*  height: 75vh; */
 }
 
 #login {

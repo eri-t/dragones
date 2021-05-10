@@ -36,37 +36,44 @@
     </nav>
 <main  id="agregarPagina">
     <section class="container-fluid pt-5 pb-5 w-50">
+
         <div class="card card-agregar text-left">
             <h2 class="card-header">Agregar Dragón</h2>
             <div class="card-body">
-                <h4 class="h6 pb-1 border-bottom mb-3 col-12">Datos del Dragón</h4>
+                <h3 class="h6 pb-1 border-bottom mb-3 col-12">Datos del Dragón</h3>
                 <form action="#" method="post">
                     <div class="row">
                         <div class="col-4">
+                            <!--
                             <figure class="card">
-
+                            -->
+                            <figure class="figure">
                                 <img src="../img/chinese-dragons.jpg" alt="dragon" class="img-fluid rounded"/>
                             </figure>
                             <div class="form-group mt-0 pt-0">
+                                <!--
                                 <label for="poster"></label>
+                            -->
                                 <input accept="image/x-png,image/jpeg" type="file" class="form-control-file" name="poster" id="poster" aria-describedby="fileHelpId">
                                 <small id="fileHelpId" class="form-text text-muted">El formato de la imagen debe ser <b>PNG</b> o <b>JPG</b></small>
                             </div>
                         </div>
-                        <div class="col-8">
-                        <div>
-                            <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre">
-                        </div>
+                        
+                            <div class="col-8">
 
-                    <div>
-                        <label for="categoria">Categoría</label>
-                        <select name="categoria" id="categoria" class="form-control">
-                            <option value="">Categoría</option>
-                            <option value=""></option>
+                                <label for="nombre">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre">
+                            </div>
 
-                        </select>
-                    </div>
+                            <div>
+                                <label for="categoria">Categoría</label>
+                                <select name="categoria" id="categoria" class="form-control">
+                                    <option value="">Categoría</option>
+                                    <option value=""></option>
+
+                                </select>
+                            </div>
+
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="descripcion">Descripción</label>

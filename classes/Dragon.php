@@ -58,10 +58,10 @@ class Dragon implements JsonSerializable
     }
 
     /**
-     * Retorna el dragón al que pertenece la $pk.
+     * Retorna el dragón al que pertenece la $id.
      * De no existir, retorna null.
      *
-     * @param int $pk
+     * @param int $id
      * @return Dragon|null
      */
     public function traerPorPK(int $id)

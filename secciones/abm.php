@@ -50,6 +50,7 @@ if(!isset($_SESSION["id"])) {
 
   <section class="container-fluid" id="tablaAbm">
     <button id="agregarDragon" type="button" >Agregar Dragón</button>
+    <div id="contenedorAgregar"></div>
     <div class="container-fluid">
       <div class="row justify-content-center pb-3">
         <table class="table tabla">
@@ -82,6 +83,7 @@ if(!isset($_SESSION["id"])) {
   </footer>
 
   <script src="../js/listar-todos.js"></script>
+  <script src="../js/crear-form-dragon.js"></script>
   <script src="../js/eliminar.js"></script>
 </body>
 </html>
