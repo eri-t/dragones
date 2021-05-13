@@ -49,10 +49,65 @@ if(!isset($_SESSION["id"])) {
   </nav>
 
   <section class="container-fluid" id="tablaAbm">
-    <button id="agregarDragon" type="button" >Agregar Dragón</button>
-    <div id="contenedorAgregar"></div>
-    <div class="container-fluid">
+
+    <button id="agregarDragon" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseCrear" aria-expanded="false" aria-controls="collapseExample">
+      Agregar Dragón
+    </button>
+
+    <div class="collapse" id="collapseCrear">
+
+        <div class="card card-agregar text-left">
+            <h2 class="card-header">Agregar Dragón</h2>
+            <div class="card-body">
+                <h3 class="h6 pb-1 border-bottom mb-3 col-12">Datos del Dragón</h3>
+                <form id="formCrear">
+                    <div class="row">
+                        <div class="col-4">
+                            <figure class="figure">
+                                <img src="../img/chinese-dragons.jpg" alt="dragon" class="img-fluid rounded"/>
+                            </figure>
+                            <div class="form-group mt-0 pt-0">
+                                <input accept="image/x-png,image/jpeg" type="file" class="form-control-file" name="poster" id="poster" aria-describedby="fileHelpId">
+                                <small id="fileHelpId" class="form-text text-muted">El formato de la imagen debe ser <b>PNG</b> o <b>JPG</b></small>
+                            </div>
+                        </div>
+                        
+                        <div class="col-8">
+                            <div>
+                                <label for="nombre">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre">
+                            </div>
+
+                            <div>
+                                <label for="categoria">Categoría</label>
+                                <select name="categoria" id="categoria" class="form-control">
+                                    <option value="">Categoría</option>
+                                    <option value="1">categoría 1</option>
+                                    <option value="2">categoría 2</option>
+<!-- traer categorías de la bbdd -->
+                                </select>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="descripcion">Descripción</label>
+                                    <textarea name="descripcion" class="form-control" id="descripcion" cols="30" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <button type="submit" class="btn mt-3" id="botonAgregar">Agregar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container-fluid mt-3">
       <div class="row justify-content-center pb-3">
+        <h2 class="text-white">Listado de Dragones</h2>
         <table class="table tabla">
           <thead>
             <tr>
@@ -83,7 +138,7 @@ if(!isset($_SESSION["id"])) {
   </footer>
 
   <script src="../js/listar-todos.js"></script>
-  <script src="../js/crear-form-dragon.js"></script>
+  <script src="../js/crear-dragon.js"></script>
   <script src="../js/eliminar.js"></script>
 </body>
 </html>

@@ -48,20 +48,65 @@ switch($_SERVER['REQUEST_METHOD']) {
 
         // 1. Leer el búffer de entrada de php, con ayuda de la función file_get_contents.
         // El búffer de entrada es donde php almacena el contenido completo del cuerpo de la petición.
-        // En este caso, sería el objeto JSON que nois enviaron.
+        // En este caso, sería el objeto JSON que nos enviaron.
         $inputData = file_get_contents('php://input');
 //    die($inputData);
         // 2. Parsear el JSON obtenido.
         $postData = json_decode($inputData, true);
+
         // Sacamos los datos obtenidos del objeto JSON a variables independientes.
-        $nombre         = mysqli_real_escape_string($db, $postData['nombre']);
+        $nombre         = $postData['nombre'];
       //  $precio         = (float) $postData['precio'];
-        $categoria_id   = (int) $postData['categoria_id'];
+        $categorias_id   = (int) $postData['categorias_id'];
        // $id_marca       = (int) $postData['id_marca'];
-        $descripcion    = mysqli_real_escape_string($db, $postData['descripcion']);
+        $descripcion    = $postData['descripcion'];
 
         // TODO: Validar...
 
+        // Validamos usando la clase Validator, que más adelante haremos desde 0 en clase.
+// $validator = new Validator($_POST, [
+    // Aplicamos las reglas de validación definidas en la clase que queremos aplicar a cada clave del
+    // array.
+
+    /*
+    'nombre'        => ['required', 'min:3'],
+    'categorias_id'  => ['required', 'numeric'],
+    */
+// ]);
+
+/*
+if(!$validator->passes()) {
+    $_SESSION['error'] = 'Ocurrieron errores de validación';
+    header('Location: ./../producto-nuevo.php');
+    exit;
+}
+*/
+
+
+// Captura de datos.
+
+/*
+$nombre             = $_POST['nombre'];
+$categorias_id      = $_POST['categorias_id'];
+$descripcion        = $_POST['descripcion'];
+*/
+
+$dragon = new Dragon();
+$exito = $dragon->crear([
+    'nombre' => $nombre,
+    'categorias_id' => $categorias_id,
+    'descripcion' => $descripcion,
+]);
+
+if($exito) {
+    $_SESSION['exito'] = 'El dragón fue creado con éxito.';
+  //  header('Location: ./../index.php');
+} else {
+    $_SESSION['exito'] = 'Error al tratar de crear el dragón.';
+  //  header('Location: ./../dragon-nuevo.php');
+}
+
+/*
         $query = "INSERT INTO productos (nombre, precio, id_categoria, id_marca, descripcion)
             VALUES ('{$nombre}', '{$precio}', '{$id_categoria}', '{$id_marca}', '{$descripcion}')";
 
@@ -78,6 +123,7 @@ switch($_SERVER['REQUEST_METHOD']) {
                 'msg' => 'Ocurrió un error al tratar de insertar el producto :(',
             ]);
         }
+        */
         break;
 
     case 'PUT':
