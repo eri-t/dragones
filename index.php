@@ -15,6 +15,8 @@ $auth = new Authentication();
   <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica:ital@1&family=Reggae+One&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
   <title>Dragones</title>
 </head>
 
@@ -55,28 +57,6 @@ $auth = new Authentication();
     </div>
   </nav>
   <header>
-      <?php
-      if(isset($_SESSION['success'])){
-          $success = $_SESSION['success'];
-          unset ($_SESSION['success']);
-      ?>
-      <div class="alert alert-success">
-          <?= $success; ?>
-      </div>
-      <?php
-      }
-
-      if(isset($_SESSION['error'])){
-          $error = $_SESSION['error'];
-          unset ($_SESSION['error']);
-
-      ?>
-      <div class="alert alert-danger">
-          <?= $error; ?>
-      </div>
-      <?php
-      }
-      ?>
     <h1>Dragones</h1>
     <p>Sumérgete en este fantástico universo</p>
   </header>
