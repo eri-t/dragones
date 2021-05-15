@@ -42,12 +42,13 @@ header p {
 #tablaAbm {
     background-image: url(../img/background.jpg);
     text-align: center;
-  /*  height: 75vh; */
+    padding-top: .5em;
 }
 
 #login {
     background-image: url(../img/background.jpg);
     height: 70vh;
+    padding-top: .5em;
 }
 
 #btnTraerTodos  {

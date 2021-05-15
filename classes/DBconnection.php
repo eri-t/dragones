@@ -12,7 +12,7 @@ class DBConnection
     // Constantes de conexión.
     const DB_HOST = "localhost";
     const DB_USER = "root";    
-    const DB_PASS = "root";
+    const DB_PASS = "";
     const DB_BASE = "dragones";
 
     /**

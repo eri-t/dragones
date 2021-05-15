@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
+<<<<<<< HEAD
+=======
     const loader = document.getElementById('loader');
     // Imagen
     const inputImagen = document.getElementById('poster');
@@ -26,26 +28,38 @@ document.addEventListener('DOMContentLoaded', function () {
         reader.readAsDataURL(this.files[0]);
     });
 
+>>>>>>> main
     function crearDragon() {
         const inputNombre = document.getElementById('nombre');
         const inputCategoriaId = document.getElementById('categoria');
         const inputDescripcion = document.getElementById('descripcion');
+<<<<<<< HEAD
+=======
 
+>>>>>>> main
         const data = {
             nombre: inputNombre.value,
             categorias_id: inputCategoriaId.value,
             descripcion: inputDescripcion.value,
+<<<<<<< HEAD
+        };
+=======
             imagen: imagen,
         };
 
+>>>>>>> main
         fetch('../api/dragones.php', {
                 method: 'post',
                 body: JSON.stringify(data),
             })
             .then(rta => rta.json())
             .then(responseData => {
+<<<<<<< HEAD
+                console.log("Respuesta del POST dragones.php: ", responseData);
+=======
                 toggleFormElements(formCrear, false);
                 loader.innerHTML = '';
+>>>>>>> main
             });
     }
 
@@ -53,6 +67,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     formCrear.addEventListener('submit', function (ev) {
         ev.preventDefault();
+<<<<<<< HEAD
+        crearDragon();
+    });
+=======
 
         // Ponemos el logo de carga
         loader.innerHTML = getLoader();
@@ -80,4 +98,5 @@ document.addEventListener('DOMContentLoaded', function () {
         const elems = form.querySelectorAll('input, select, textarea, button');
         elems.forEach(item => item.disabled = disabled);
     }
+>>>>>>> main
 });

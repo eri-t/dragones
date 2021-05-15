@@ -1,5 +1,7 @@
 <?php
-session_start();
+require_once 'autoload.php';
+
+$auth = new Authentication();
 if(isset($_SESSION["id"])) {
     header("Location: secciones/abm.php");
     exit;
@@ -32,7 +34,7 @@ if(isset($_SESSION["id"])) {
                   <a class="nav-link" aria-current="page" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="abm.html">ABM</a>
+                  <a class="nav-link" href="secciones/abm.php">ABM</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link active" href="#">Iniciar Sesión</a>
@@ -43,7 +45,19 @@ if(isset($_SESSION["id"])) {
         </nav>
 
         <section class="container-fluid" id="login">
-            <div class="row pt-5 justify-content-center">
+            <?php
+            if(isset($_SESSION['success'])){
+                $success = $_SESSION['success'];
+                unset ($_SESSION['success']);
+                ?>
+                <div class="alert alert-success">
+                    <?= $success; ?>
+                </div>
+                <?php
+            }
+            ?>
+            <div id="estado" class="alert d-none"><span id="countdown"></span></div>
+            <div class="row pt-3 justify-content-center">
             <div class="card loginCard">
                 <h2 class="card-header">Iniciar Sesión</h2>
                 <div class="card-body">
@@ -75,6 +89,6 @@ if(isset($_SESSION["id"])) {
             </div>
           </footer>
 
-        <script src="js/login.js"></script>
+     <script src="js/login.js"></script>
 </body>
 </html>

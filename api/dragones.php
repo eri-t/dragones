@@ -22,9 +22,11 @@ switch($_SERVER['REQUEST_METHOD']) {
         break;
 
     case 'POST':
+
         $inputData = file_get_contents('php://input');
 
         $postData = json_decode($inputData, true);
+
 
         $nombre         = $postData['nombre'];
 
@@ -61,21 +63,25 @@ if(!$validator->passes()) {
 }
 */
 
+
 $dragon = new Dragon();
 $exito = $dragon->crear([
     'nombre' => $nombre,
     'categorias_id' => $categorias_id,
     'descripcion' => $descripcion,
+
     'imagen' => $imagenNombre
 ]);
 
 /*
+>>>>>>> main
 if($exito) {
     $_SESSION['exito'] = 'El dragón fue creado con éxito.';
   //  header('Location: ./../index.php');
 } else {
     $_SESSION['exito'] = 'Error al tratar de crear el dragón.';
   //  header('Location: ./../dragon-nuevo.php');
+
 
 
 */
@@ -91,7 +97,8 @@ if($exito) {
                 'msg' => 'Ocurrió un error al tratar de agregar el dragón :(',
             ]);
         }
-        
+
+
         break;
 
     case 'PUT':
@@ -105,6 +112,7 @@ if($exito) {
         break;
 
     case 'DELETE':
+
         $id = $_GET['id'];
         $dragon = new Dragon;
         $dragones = $dragon->eliminar($id);

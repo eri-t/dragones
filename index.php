@@ -1,4 +1,8 @@
+<?php
+require_once 'autoload.php';
 
+$auth = new Authentication();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -11,6 +15,8 @@
   <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica:ital@1&family=Reggae+One&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
   <title>Dragones</title>
 </head>
 
@@ -30,9 +36,22 @@
           <li class="nav-item">
             <a class="nav-link" href="secciones/abm.php">ABM</a>
           </li>
+            <?php
+            if(!$auth->isAuthenticated()){
+            ?>
           <li class="nav-item">
             <a class="nav-link" href="login.php">Iniciar Sesión</a>
           </li>
+            <?php
+            }
+            else{
+            ?>
+            <li class="nav-item">
+                <a class="nav-link" href="acciones/logout.php">Cerrar Sesión</a>
+            </li>
+            <?php
+            }
+            ?>
         </ul>
       </div>
     </div>
