@@ -95,8 +95,8 @@ class Dragon implements JsonSerializable
     public function crear(array $data): bool
     {
         $db = DBConnection::getConnection();
-        $query = "INSERT INTO dragones (categorias_id, nombre, descripcion) 
-                  VALUES (:categorias_id, :nombre, :descripcion)";
+        $query = "INSERT INTO dragones (categorias_id, nombre, descripcion, imagen) 
+                  VALUES (:categorias_id, :nombre, :descripcion, :imagen)";
         $stmt = $db->prepare($query);
 
         if(!$stmt->execute($data)) {

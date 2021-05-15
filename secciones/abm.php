@@ -65,30 +65,7 @@ if(!$auth->isAuthenticated()) {
 
   <section class="container-fluid" id="tablaAbm">
 
-      <?php
-      if(isset($_SESSION['success'])){
-          $success = $_SESSION['success'];
-          unset ($_SESSION['success']);
-          ?>
-          <div class="alert alert-success">
-              <?= $success; ?>
-          </div>
-          <?php
-      }
-
-      if(isset($_SESSION['error'])){
-          $error = $_SESSION['error'];
-          unset ($_SESSION['error']);
-
-          ?>
-          <div class="alert alert-danger">
-          <?= $error; ?>
-          </div>
-          <?php
-      }
-      ?>
-
-    <button id="agregarDragon" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseCrear" aria-expanded="false" aria-controls="collapseExample">
+    <button id="agregarDragon" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseCrear" aria-expanded="false" aria-controls="collapseCrear">
       Agregar Dragón
     </button>
 
@@ -104,6 +81,7 @@ if(!$auth->isAuthenticated()) {
                             <figure class="figure">
                                 <img src="../img/chinese-dragons.jpg" alt="dragon" class="img-fluid rounded"/>
                             </figure>
+
                             <div class="form-group mt-0 pt-0">
                                 <input accept="image/x-png,image/jpeg" type="file" class="form-control-file" name="poster" id="poster" aria-describedby="fileHelpId">
                                 <small id="fileHelpId" class="form-text text-muted">El formato de la imagen debe ser <b>PNG</b> o <b>JPG</b></small>

@@ -13,11 +13,11 @@ if(isset($_SESSION["id"])) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica:ital@1&family=Reggae+One&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
   <title>Dragones</title>
 </head>
 <body>
@@ -82,7 +82,7 @@ if(isset($_SESSION["id"])) {
         <div class="separador"></div>
         <footer class="container-fluid">
             <div class="text-center"> 
-              <img src="img/dragon_footer.png" alt="dragon chino">
+              <img src="../img/dragon_footer.png" alt="dragon chino">
               <p>© ERICA TORRICO & FLORENCIA MELLONE</p>
               <p>Parcial 1 | Programación 3 | Clientes Web Mobile</p>
               <p>Primera Escuela de Arte Multimedial Da Vinci</p>
