@@ -11,11 +11,11 @@ if(isset($_SESSION["id"])) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica:ital@1&family=Reggae+One&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
   <title>Dragones</title>
 </head>
 <body>
@@ -29,13 +29,13 @@ if(isset($_SESSION["id"])) {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                  <a class="nav-link" aria-current="page" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="secciones/abm.html">ABM</a>
+                  <a class="nav-link" href="abm.html">ABM</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Iniciar Sesión</a>
+                  <a class="nav-link active" href="#">Iniciar Sesión</a>
                 </li>
               </ul>
             </div>
@@ -68,7 +68,7 @@ if(isset($_SESSION["id"])) {
         <div class="separador"></div>
         <footer class="container-fluid">
             <div class="text-center"> 
-              <img src="img/dragon_footer.png" alt="dragon chino">
+              <img src="../img/dragon_footer.png" alt="dragon chino">
               <p>© ERICA TORRICO & FLORENCIA MELLONE</p>
               <p>Parcial 1 | Programación 3 | Clientes Web Mobile</p>
               <p>Primera Escuela de Arte Multimedial Da Vinci</p>

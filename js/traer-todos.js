@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     function traerTodos() {
         fetch('api/dragones.php')
-            // Pedimos la respuesta parseada como JSON.
             .then(response => response.json())
             .then(dragones => {
                 const div = document.getElementById('respuesta');
