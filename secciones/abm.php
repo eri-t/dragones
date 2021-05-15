@@ -1,11 +1,13 @@
 <?php
-/*
-session_start();
-if(!isset($_SESSION["id"])) {
-    header('Location: login.php');
+require_once __DIR__ . '/../autoload.php';
+
+$auth = new Authentication();
+
+if(!$auth->isAuthenticated()) {
+    header('Location: ../login.php');
     exit;
 }
-*/
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -40,15 +42,51 @@ if(!isset($_SESSION["id"])) {
           <li class="nav-item">
             <a class="nav-link active" href="#">ABM</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../login.php">Iniciar Sesión</a>
-          </li>
+            <?php
+            if(!$auth->isAuthenticated()){
+                ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="../login.php">Iniciar Sesión</a>
+                </li>
+                <?php
+            }
+            else{
+                ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="../acciones/logout.php">Cerrar Sesión</a>
+                </li>
+                <?php
+            }
+            ?>
         </ul>
       </div>
     </div>
   </nav>
 
   <section class="container-fluid" id="tablaAbm">
+
+      <?php
+      if(isset($_SESSION['success'])){
+          $success = $_SESSION['success'];
+          unset ($_SESSION['success']);
+          ?>
+          <div class="alert alert-success">
+              <?= $success; ?>
+          </div>
+          <?php
+      }
+
+      if(isset($_SESSION['error'])){
+          $error = $_SESSION['error'];
+          unset ($_SESSION['error']);
+
+          ?>
+          <div class="alert alert-danger">
+          <?= $error; ?>
+          </div>
+          <?php
+      }
+      ?>
 
     <button id="agregarDragon" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseCrear" aria-expanded="false" aria-controls="collapseExample">
       Agregar Dragón

@@ -1,4 +1,8 @@
+<?php
+require_once 'autoload.php';
 
+$auth = new Authentication();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -30,14 +34,49 @@
           <li class="nav-item">
             <a class="nav-link" href="secciones/abm.php">ABM</a>
           </li>
+            <?php
+            if(!$auth->isAuthenticated()){
+            ?>
           <li class="nav-item">
             <a class="nav-link" href="login.php">Iniciar Sesión</a>
           </li>
+            <?php
+            }
+            else{
+            ?>
+            <li class="nav-item">
+                <a class="nav-link" href="acciones/logout.php">Cerrar Sesión</a>
+            </li>
+            <?php
+            }
+            ?>
         </ul>
       </div>
     </div>
   </nav>
   <header>
+      <?php
+      if(isset($_SESSION['success'])){
+          $success = $_SESSION['success'];
+          unset ($_SESSION['success']);
+      ?>
+      <div class="alert alert-success">
+          <?= $success; ?>
+      </div>
+      <?php
+      }
+
+      if(isset($_SESSION['error'])){
+          $error = $_SESSION['error'];
+          unset ($_SESSION['error']);
+
+      ?>
+      <div class="alert alert-danger">
+          <?= $error; ?>
+      </div>
+      <?php
+      }
+      ?>
     <h1>Dragones</h1>
     <p>Sumérgete en este fantástico universo</p>
   </header>

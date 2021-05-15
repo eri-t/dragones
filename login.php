@@ -1,5 +1,7 @@
 <?php
-session_start();
+require_once 'autoload.php';
+
+$auth = new Authentication();
 if(isset($_SESSION["id"])) {
     header("Location: secciones/abm.php");
     exit;
@@ -11,11 +13,11 @@ if(isset($_SESSION["id"])) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica:ital@1&family=Reggae+One&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="css/style.css">
   <title>Dragones</title>
 </head>
 <body>
@@ -32,7 +34,7 @@ if(isset($_SESSION["id"])) {
                   <a class="nav-link" aria-current="page" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="abm.html">ABM</a>
+                  <a class="nav-link" href="secciones/abm.php">ABM</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link active" href="#">Iniciar Sesión</a>
@@ -43,11 +45,33 @@ if(isset($_SESSION["id"])) {
         </nav>
 
         <section class="container-fluid" id="login">
-            <div class="row pt-5 justify-content-center">
+            <?php
+            if(isset($_SESSION['success'])){
+                $success = $_SESSION['success'];
+                unset ($_SESSION['success']);
+                ?>
+                <div class="alert alert-success">
+                    <?= $success; ?>
+                </div>
+                <?php
+            }
+
+            if(isset($_SESSION['error'])){
+                $error = $_SESSION['error'];
+                unset ($_SESSION['error']);
+
+                ?>
+                <div class="alert alert-danger">
+                <?= $error; ?>
+                </div>
+                <?php
+            }
+            ?>
+            <div class="row pt-3 justify-content-center">
             <div class="card loginCard">
                 <h2 class="card-header">Iniciar Sesión</h2>
                 <div class="card-body">
-                <form action="#" method="post" id="formLogin">
+                <form action="acciones/login.php" method="post" id="formLogin">
                   <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" class="form-control" id="email" name="email">
@@ -75,6 +99,5 @@ if(isset($_SESSION["id"])) {
             </div>
           </footer>
 
-        <script src="js/login.js"></script>
 </body>
 </html>
