@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 for (let i = 0; i < dragones.length; i++) {
                     salida += `
                     <div class="card ml-4 mt-3 dragon" style="width: 18rem;">
-                    <img class="card-img-top" src="${dragones[i].imagen}" alt="${dragones[i].nombre}">
+                    <img class="card-img-top" src="img/${dragones[i].imagen}" alt="${dragones[i].nombre}">
                     <div class="card-body">
                         <details>
                             <summary class="h5">${dragones[i].nombre}</summary>

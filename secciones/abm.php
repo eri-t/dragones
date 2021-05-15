@@ -50,7 +50,7 @@ if(!isset($_SESSION["id"])) {
 
   <section class="container-fluid" id="tablaAbm">
 
-    <button id="agregarDragon" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseCrear" aria-expanded="false" aria-controls="collapseExample">
+    <button id="agregarDragon" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseCrear" aria-expanded="false" aria-controls="collapseCrear">
       Agregar Dragón
     </button>
 
@@ -62,10 +62,12 @@ if(!isset($_SESSION["id"])) {
                 <h3 class="h6 pb-1 border-bottom mb-3 col-12">Datos del Dragón</h3>
                 <form id="formCrear">
                     <div class="row">
-                        <div class="col-4">
-                            <figure class="figure">
-                                <img src="../img/chinese-dragons.jpg" alt="dragon" class="img-fluid rounded"/>
-                            </figure>
+                        <div class="col-4 d-flex flex-column justify-content-center align-items-center">
+                            <div id="loader" class="position-absolute"></div>
+                              <figure class="figure">
+                                  <img src="../img/default.jpg" alt="Dragón genérico" class="img-fluid rounded" id="preview"/>
+                              </figure>
+                            
                             <div class="form-group mt-0 pt-0">
                                 <input accept="image/x-png,image/jpeg" type="file" class="form-control-file" name="poster" id="poster" aria-describedby="fileHelpId">
                                 <small id="fileHelpId" class="form-text text-muted">El formato de la imagen debe ser <b>PNG</b> o <b>JPG</b></small>
