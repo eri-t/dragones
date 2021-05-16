@@ -79,7 +79,15 @@ VALUES
   -- 6:
   ('Mesoamericana'),
   -- 7:
-  ('Mesopotámica');
+  ('Mesopotámica'),
+  -- 8:
+  ('Babilónica'),
+  -- 9:
+  ('Vietnamita'),
+  -- 10:
+  ('Filipinas'),
+  -- 11:
+  ('Coreana');
 
 -- DRAGONES
 
@@ -145,3 +153,148 @@ descripcion = 'Este dios sumerio está dentro de las leyendas de los Anunnakis, 
 imagen = "anzu_2.jpg",
 
 categorias_id = 7;
+
+INSERT INTO dragones
+SET nombre
+    = 'Mushussu',
+    descripcion = 'Se parece a un dragón con el cuerpo recubierto de escamas, las patas delanteras de león y las traseras con garras de águila. También tiene un cuello largo y una cola, cabeza con cuernos, una lengua como de serpiente y una cresta.
+Fue símbolo de diferentes divinidades: al principio fue asociado al dios Ninazu, que era venerado en Ešnunna, luego se asoció al dios Tishpak.',
+
+    imagen = "mushussu.jpg",
+
+    categorias_id = 6;
+
+INSERT INTO dragones
+SET nombre
+    = 'Watatsumi',
+    descripcion = 'Fue creado cuando Izanagi se lavó en el mar, tras volver de la Tierra de la Oscuridad. Es el dominador de los peces y de todos los seres vivientes del mar y además es quien controla las mareas. Tiene el poder de controlar cualquier criatura que nade en el mar y puede mover las aguas del océano a su antojo. En su forma verdadera es un dragón serpiente de color verde, pero se encuentra igualmente cómodo tomando la forma de un hombre viejo. Watatsumi vive en un gran palacio en el fondo del mar.',
+
+    imagen = "watatsumi.jpg",
+
+    categorias_id = 5;
+
+INSERT INTO dragones
+SET nombre
+    = 'Toyotama-hime',
+    descripcion = 'Es la princesa dragón de los mares. Es la hija de Ryujin, el Dios Dragón de los mares. Ella está casada con el Dios Hoori, hijo de Konohana y Ninigi. Otohime es vista como una joven de una belleza increíble, pero cuando está transformada en dragón, pierde su hermosura. Ella anda siempre con un traje que está permanentemente húmedo.',
+
+    imagen = "toyotama.jpg",
+
+    categorias_id = 5;
+
+INSERT INTO dragones
+SET nombre
+    = 'Jörmungandr',
+    descripcion = 'Jörmungandr, también conocido como la Serpiente de Midgard, es el hijo medio de un gigante y Loki, dios del fuego y el caos. Su antitesis está representada por Thor , el dios del trueno y el relampago, protector de la humanidad. La gente lo llamaba la Serpiente de Midgard cuyo cuerpo rodeaba todo el Midgard con su cola en la boca. En realidad, la apariencia de Jormungandr se suponía que era la combinación de dragón y serpiente.Según las leyendas, Odín tomó a Jormungand y lo arrojó al gran océano que rodea a Midgard, nuestro mundo.',
+
+    imagen = "jormungandr.jpg",
+
+    categorias_id = 4;
+
+INSERT INTO dragones
+SET nombre
+    = 'Fafnir',
+    descripcion = 'Fafnir era un enano, hijo del mago Hreidman y hermano de Otr y Reginn. Se dice que Fáfnir, fue maldecido en algún momento por un anillo mágico creado por un enano mago llamado Andvari que lo convirtió en un dragón. Posteriormente, es asesinado por Sigurd, un legendario héroe nórdico.',
+
+    imagen = "fafnir.jpg",
+
+    categorias_id = 4;
+
+INSERT INTO dragones
+SET nombre
+    = 'Typhoon',
+    descripcion = 'Tifón (o Typhoeus) era el hijo de Gaia y Tártaro. Era un dragón gigante con cien cabezas, alas emplumadas y escupía llamas y piedras. Se casó con Echidna, de quien tuvo como hijos a Cerbero, Otro, Quimera e Hidra. Su madre lo obligó a luchar con Zeus porque éste había matado a sus hijos, los Titanes. El dragón logró aplastar a Zeus quitándole los tendones para evitar que se moviera y se los confió a su hermana Delfine. El dios Pan logró recuperar los tendones y Zeus derrotó a Tifón encerrándolo bajo una montaña, pero el dragón no estaba muerto y todavía escupe fuego y piedras. La montaña bajo la que aún vive el tifón es el Etna.',
+
+    imagen = "typhoon.jpg",
+
+    categorias_id = 3;
+
+INSERT INTO dragones
+SET nombre
+    = 'Kampe',
+    descripcion = 'Una dragona con cabeza de mujer, cuerpo de escorpión y de cola de pez. Fue colocada por el titán Cronos para custodiar el Tártaro y proteger al Ecantonchiri y al Cíclope. Ella fue asesinada por el dios Zeus para liberar a estos últimos y hacerlos luchar en la batalla contra los titanes.',
+
+    imagen = "kampe.jpg",
+
+    categorias_id = 3;
+
+INSERT INTO dragones
+SET nombre
+    = 'Pitón',
+    descripcion = 'Pitón era un dragón hijo de Gea producido del barro de la tierra después del Diluvio Universal. Guardó el Oráculo de Delfos en nombre de su madre junto con Delfine. El dios Apolo lo mató porque Python había perseguido a Leto, la madre del dios.',
+
+    imagen = "piton.jpg",
+
+    categorias_id = 3;
+
+INSERT INTO dragones
+SET nombre
+    = 'Hydra',
+    descripcion = 'Hydra es un dragón en forma de serpiente con muchas cabezas, hija de Tifón y Echidna. Tenía nueve cabezas, la central de las cuales era inmortal. En algunas versiones se habla de cincuenta cabezas de oro. Cualquier cabeza que fuera cortada era reemplazada por otras dos. El aliento y la sangre de la Hidra eran muy venenosos y podían escupir fuego. Vivía en el pantano de Lerna, en Argólida, donde los asesinos venían a purificarse.',
+
+    imagen = "hydra.jpg",
+
+    categorias_id = 3;
+
+INSERT INTO dragones
+SET nombre
+    = 'Sirrush',
+    descripcion = 'Sirrush era un dragón sometido por Marduk, que se puso a sus pies y se convirtió en el símbolo de la cabeza de los dioses babilónicos. En las paredes de los edificios de la antigua Babilonia se encontró un fresco que representaba a esta criatura. A diferencia de muchos otros animales mitológicos, la imagen no fue pintada de diferentes maneras a lo largo del tiempo y mantuvo la misma forma a través de los siglos.',
+
+    imagen = "sirrush.jpg",
+
+    categorias_id = 8;
+
+INSERT INTO dragones
+SET nombre
+    = 'Yong',
+    descripcion = 'Es un Dragón de los Cielos, prácticamente idéntico al Lóng chino. Al igual que el Lóng, el Yong y otros dragones coreanos, suelen atribuirse al agua y al clima. En coreano puro también se le conoce como Mireu.',
+
+    imagen = "yong.jpg",
+
+    categorias_id = 11;
+
+INSERT INTO dragones
+SET nombre
+    = 'Immogi',
+    descripcion = 'Es un dragón de los océanos, usualmente es comparado con las serpientes marinas. La leyenda de Imoogi cuenta que el dios del sol le dio al Imoogi sus poderes a través de una chica humana, que se convertiría en Imoogi el día de su cumpleaños 17. La leyenda también dice que una marca en forma de Dragón puede verse en el hombro de la niña, revelando su verdadera identidad como Imoogi en forma humana.',
+
+    imagen = "immogi.jpg",
+
+    categorias_id = 11;
+
+INSERT INTO dragones
+SET nombre
+    = 'Bakunawa',
+    descripcion = 'El Bakunawa aparece como una serpiente gigante que vive en el mar. Los nativos del pasado creían que los Bakunawa causaban eclipses de sol y luna. También se dijo que durante ciertos períodos del año, los Bakunawa emergieron del océano para tragarse toda la luna.',
+
+    imagen = "bakunawa.jpg",
+
+    categorias_id = 10;
+
+INSERT INTO dragones
+SET nombre
+    = 'Rong',
+    descripcion = 'Los cuerpos de estos dragones están doblados en forma de doce crestas de olas, para simbolizar los meses del año. Pueden cambiar el clima y son responsables de los cultivos. A lo largo de toda la espalda del Dragón hay pequeñas escamas ininterrumpidas, la cabeza tiene una crin gruesa, bigote, ojos prominentes, una cresta en la nariz pero no tiene cuernos. La mandíbula es ancha y abierta, con una lengua larga y delgada.',
+
+    imagen = "rong.jpg",
+
+    categorias_id = 9;
+
+INSERT INTO dragones
+SET nombre
+    = 'Tianlong',
+    descripcion = 'Es un dragón volador en la mitología china, una estrella en la astrología china, y un nombre propio.',
+
+    imagen = "tianlong.jpg",
+
+    categorias_id = 2;
+
+INSERT INTO dragones
+SET nombre
+    = 'Yinglong',
+    descripcion = 'Es un dragón que se cree que había sido un poderoso sirviente de Huang Di, el Emperador Amarillo, y que fue inmortalizado posteriormente en forma de dragón. Una leyenda dice que Yinglong ayudó a un hombre llamado Yu a evitar el desbordamiento del río Amarillo cavando largos canales con su cola.',
+
+    imagen = "yinlong.jpg",
+
+    categorias_id = 2;
