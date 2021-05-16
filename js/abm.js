@@ -137,7 +137,6 @@ function listarTodos() {
             let salida = "";
 
             for (let i = 0; i < dragones.length; i++) {
-
                 salida += `
                     <tr>
                         <th scope="row"> ${dragones[i].id} </th>
