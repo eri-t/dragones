@@ -63,7 +63,8 @@ if(!$auth->isAuthenticated()) {
     </div>
   </nav>
 
-  <section class="container-fluid" id="tablaAbm">
+<section class="container-fluid pt-2" id="tablaAbm">
+    <div id="mensaje" class="fade show"></div>
 
     <button id="agregarDragon" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseCrear" aria-expanded="false" aria-controls="collapseCrear">
       Agregar Dragón
@@ -153,8 +154,7 @@ if(!$auth->isAuthenticated()) {
     </div>
   </footer>
 
-  <script src="../js/listar-todos.js"></script>
-  <script src="../js/crear-dragon.js"></script>
-  <script src="../js/eliminar.js"></script>
+  <script src="../js/abm.js"></script>
+
 </body>
 </html>

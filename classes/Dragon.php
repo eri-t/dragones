@@ -36,7 +36,7 @@ class Dragon implements JsonSerializable
 
         $query = "SELECT * FROM dragones
         /* LEFT JOIN categorias ON categorias_id = categorias.id*/
-        ";
+        ORDER BY id DESC";
         $stmt = $db->prepare($query);
         $stmt->execute();
 
@@ -76,14 +76,15 @@ class Dragon implements JsonSerializable
         if(!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
             return null;
         }
-            $dragon = new self();
-            $dragon->setId($fila['id']);
-            $dragon->setCategoriasId($fila['categorias_id']);
-            $dragon->setNombre($fila['nombre']);
-            $dragon->setDescripcion($fila['descripcion']);
-            $dragon->setImagen($fila['imagen']);
 
-            return $dragon;
+        $dragon = new self();
+        $dragon->setId($fila['id']);
+        $dragon->setCategoriasId($fila['categorias_id']);
+        $dragon->setNombre($fila['nombre']);
+        $dragon->setDescripcion($fila['descripcion']);
+        $dragon->setImagen($fila['imagen']);
+
+        return $dragon;
     }
 
     /**
@@ -110,7 +111,13 @@ class Dragon implements JsonSerializable
         $db = DBConnection::getConnection();
     }
 
-    public function eliminar(int $id)
+    /**
+     * Borra un dragón de la base de datos.
+     *
+     * @param int $id
+     * @return bool
+     */
+    public function eliminar(int $id): bool
     {
         $db = DBConnection::getConnection();
         $query = "SELECT * FROM dragones WHERE id = ?";
@@ -118,22 +125,28 @@ class Dragon implements JsonSerializable
         $stmt->execute([$id]);
 
         if(!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            // ver qué hacer si no lo encuentra
-            echo('no lo encuentra');
+            return false;
         }
 
-     //   $queryEliminar = "UPDATE dragones SET existe = 0 WHERE id = ?";
         $queryEliminar = "DELETE FROM dragones WHERE id = ?";
         $stmt = $db->prepare($queryEliminar);
         $stmt->execute([$id]);
 
-        // hacer algo si sale mal
-/*
+        if(!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            return false;
+        }
+
+        $dragon = new self();
+        $dragon->setImagen($fila['imagen']);
+
+        // borrar archivo:
+        $root = explode("classes",__DIR__)[0];
+        
         if($dragon["imagen"] != 'default.jpg'):
-            unlink(ROOT . $dragon["imagen"]);
+            unlink($root . '/img/' . $dragon["imagen"]);
         endif;
-*/
-        // mensaje de éxito
+
+        return true;
     }
 
     /**
