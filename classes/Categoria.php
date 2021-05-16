@@ -1,6 +1,5 @@
 <?php
 
-
 class Categoria implements JsonSerializable
 {
     private $id;
@@ -33,7 +32,7 @@ class Categoria implements JsonSerializable
         $salida = [];
 
         while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            // En cada vuelta, instanciamos un dragón para almacenar los datos del registro.
+            // En cada vuelta, instanciamos una categoría para almacenar los datos del registro.
             $categoria = new self();
             $categoria->setId($fila['id']);
 

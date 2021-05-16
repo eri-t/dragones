@@ -15,8 +15,8 @@ $auth = new Authentication();
   <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica:ital@1&family=Reggae+One&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-    <script src="js/jquery-1.11.3.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
   <title>Dragones</title>
 </head>
 
@@ -83,7 +83,7 @@ $auth = new Authentication();
     </section>
       <div class="separador"></div>
     <script src="js/traer-todos.js"></script>
-    <script src="js/traer-categoria.js"></script>
+    <script src="js/traer-categorias.js"></script>
   </main>
   <footer class="container-fluid">
     <div class="text-center">

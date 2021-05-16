@@ -27,12 +27,9 @@ switch($_SERVER['REQUEST_METHOD']) {
 
         $postData = json_decode($inputData, true);
 
-
-        $nombre         = $postData['nombre'];
-
-// ver si sacar el (int):        
-        $categorias_id   = (int) $postData['categorias_id'];
-        $descripcion    = $postData['descripcion'];
+        $nombre = $postData['nombre'];             
+        $categorias_id = $postData['categorias_id'];
+        $descripcion = $postData['descripcion'];
 
         sleep(2);
         $imagenParts = explode(',', $postData['imagen']);
@@ -94,7 +91,7 @@ if($exito) {
         } else {
             echo json_encode([
                 'success' => false,
-                'msg' => 'Ocurrió un error al tratar de agregar el dragón :(',
+                'msg' => 'Ocurrió un error al tratar de agregar el dragón',
             ]);
         }
 
@@ -115,7 +112,19 @@ if($exito) {
 
         $id = $_GET['id'];
         $dragon = new Dragon;
-        $dragones = $dragon->eliminar($id);
+        $exito = $dragon->eliminar($id);
+
+        if($exito) {
+            echo json_encode([
+                'success' => true,
+                'msg' => 'El dragón se eliminó con éxito.',
+            ]);
+        } else {
+            echo json_encode([
+                'success' => false,
+                'msg' => 'Ocurrió un error al tratar de eliminar el dragón.',
+            ]);
+        }
 
         break;
 
