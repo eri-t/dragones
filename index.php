@@ -42,6 +42,9 @@ $auth = new Authentication();
           <li class="nav-item">
             <a class="nav-link" href="login.php">Iniciar Sesión</a>
           </li>
+          <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#modalRegistro">Registrarse</a>
+            </li>
             <?php
             }
             else{
@@ -52,9 +55,7 @@ $auth = new Authentication();
             <?php
             }
             ?>
-            <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#modalRegistro">Registrarse</a>
-            </li>
+            
         </ul>
       </div>
     </div>
