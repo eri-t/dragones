@@ -1,7 +1,7 @@
 <?php
-/*
-require_once __DIR__ . '/../autoload.php';
 
+require_once '../autoload.php';
+/*
 $auth = new Authentication();
 
 if(!$auth->isAuthenticated()) {
@@ -9,6 +9,12 @@ if(!$auth->isAuthenticated()) {
     exit;
 }
 */
+
+// $titulo = "Nuevo";
+// $action = "crear_experiencias";
+
+$categorias = (new Categoria)->traerCategorias();
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -16,10 +22,12 @@ if(!$auth->isAuthenticated()) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica:ital@1&family=Reggae+One&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/select2.min.css">
+  <link rel="stylesheet" href="../css/select2-bootstrap4.css">
   <link rel="stylesheet" href="../css/style.css">
   <script src="../js/jquery-1.11.3.min.js"></script>
   <script src="../js/bootstrap.bundle.min.js"></script>
@@ -82,9 +90,11 @@ if(!$auth->isAuthenticated()) {
                 <h3 class="h6 pb-1 border-bottom mb-3 col-12">Datos del Dragón</h3>
                 <form id="formCrear">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-4 d-flex flex-column justify-content-center align-items-center">
+                            <div id="loader" class="position-absolute"></div>
+                            
                             <figure class="figure">
-                                <img src="../img/default.jpg" alt="dragon" class="img-fluid rounded"/>
+                                <img src="../img/default.jpg" alt="Dragón genérico" class="img-fluid rounded" id="preview"/>
                             </figure>
 
                             <div class="form-group mt-0 pt-0">
@@ -101,11 +111,18 @@ if(!$auth->isAuthenticated()) {
 
                             <div>
                                 <label for="categoria">Categoría</label>
-                                <select name="categoria" id="categoria" class="form-control">
-                                    <option value="">Categoría</option>
-                                    <option value="1">categoría 1</option>
-                                    <option value="2">categoría 2</option>
-<!-- traer categorías de la bbdd -->
+                                <select name="categoria" id="categoria" class="form-control select2">
+                                  <option></option>
+                                  <option value="0">Sin categoría</option>
+                                  <?php
+                                  
+                                  foreach ($categorias as $categoria) :
+                                  ?>
+                                    <option value="<?= $categoria->getId(); ?>"><?= $categoria->getNombre(); ?></option>
+                                  <?php
+                                  endforeach;
+                                  
+                                  ?>
                                 </select>
                             </div>
 
@@ -158,7 +175,18 @@ if(!$auth->isAuthenticated()) {
     </div>
   </footer>
 
+  <script src="../js/select2.min.js"></script>
   <script src="../js/abm.js"></script>
+
+  <script>
+    $(document).ready(function() {
+        $('.select2').select2({
+            placeholder: "Seleccione una opción",
+            theme: 'bootstrap4',
+            width: '100%'
+        });
+    });
+  </script>
 
 </body>
 </html>
