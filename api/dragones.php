@@ -32,56 +32,44 @@ switch($_SERVER['REQUEST_METHOD']) {
         $descripcion = $postData['descripcion'];
 
         sleep(2);
-        $imagenParts = explode(',', $postData['imagen']);
-        $imagenDecoded = base64_decode($imagenParts[1]);
-        // Ahí tenemos la imagen ya decodificada en _memoria_.
-        // El paso final sería grabar en disco la imagen.
-        $imagenNombre = time() . ".jpg";
-        file_put_contents('../img/' . $imagenNombre, $imagenDecoded);
-
+        if(isset($postData['imagen'])) {
+            $imagenParts = explode(',', $postData['imagen']);
+            $imagenDecoded = base64_decode($imagenParts[1]);
+            // Ahí tenemos la imagen ya decodificada en _memoria_.
+            // El paso final sería grabar en disco la imagen.
+            $imagenNombre = time() . ".jpg";
+            file_put_contents('../img/' . $imagenNombre, $imagenDecoded);
+        } else {
+            $imagenNombre = '';
+        }
         // TODO: Validar...
 
         // Validamos usando la clase Validator, que más adelante haremos desde 0 en clase.
-// $validator = new Validator($_POST, [
-    // Aplicamos las reglas de validación definidas en la clase que queremos aplicar a cada clave del
-    // array.
+        // $validator = new Validator($_POST, [
+            // Aplicamos las reglas de validación definidas en la clase que queremos aplicar a cada clave del
+            // array.
 
-    /*
-    'nombre'        => ['required', 'min:3'],
-    'categorias_id'  => ['required', 'numeric'],
-    */
-// ]);
+            /*
+            'nombre'        => ['required', 'min:3'],
+            'categorias_id'  => ['required', 'numeric'],
+            */
+        // ]);
 
-/*
-if(!$validator->passes()) {
-    $_SESSION['error'] = 'Ocurrieron errores de validación';
-    header('Location: ./../producto-nuevo.php');
-    exit;
-}
-*/
+        /*
+        if(!$validator->passes()) {
+            $_SESSION['error'] = 'Ocurrieron errores de validación';
+            header('Location: ./../producto-nuevo.php');
+            exit;
+        }
+        */
 
-
-$dragon = new Dragon();
-$exito = $dragon->crear([
-    'nombre' => $nombre,
-    'categorias_id' => $categorias_id,
-    'descripcion' => $descripcion,
-
-    'imagen' => $imagenNombre
-]);
-
-/*
->>>>>>> main
-if($exito) {
-    $_SESSION['exito'] = 'El dragón fue creado con éxito.';
-  //  header('Location: ./../index.php');
-} else {
-    $_SESSION['exito'] = 'Error al tratar de crear el dragón.';
-  //  header('Location: ./../dragon-nuevo.php');
-
-
-
-*/
+        $dragon = new Dragon();
+        $exito = $dragon->crear([
+            'nombre' => $nombre,
+            'categorias_id' => $categorias_id,
+            'descripcion' => $descripcion,
+            'imagen' => $imagenNombre
+        ]);
 
         if($exito) {
             echo json_encode([
@@ -94,7 +82,6 @@ if($exito) {
                 'msg' => 'Ocurrió un error al tratar de agregar el dragón',
             ]);
         }
-
 
         break;
 

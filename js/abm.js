@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const mensaje = document.getElementById('mensaje');
-
     const loader = document.getElementById('loader');
+
     // Imagen
     const inputImagen = document.getElementById('poster');
     const respuesta = document.getElementById('preview');
@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 mensaje.classList.add('alert');
                 if (responseData.success) {
                     mensaje.classList.add('alert-success');
+                    // restablecer la img default:
                     respuesta.src = '../img/default.jpg';
                     loader.innerHTML = '';
                     cleanFormElements(formCrear);
@@ -146,25 +147,33 @@ function listarTodos() {
                         <td> <img src="../img/${dragones[i].imagen}" alt="${dragones[i].nombre}" class="img-fluid"> </td> 
                         <td>
                             <div class="btn-group">
-                                <button type="button" class="btn btn-outline-light">Acciones</button>
-                                <button type="button" class="btn btn-outline-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="sr-only">Botón desplegable</span>
-                                </button>
-                                <div class="dropdown-menu" id="${dragones[i].id}">
-                                    <a
-                                        class="dropdown-item"
-                                        href="#" class="botonEditar"
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-light dropdown-toggle"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
                                         >
-                                        Editar...
-                                    </a>
+                                        Acciones
+                                    </button>
+
+                                <div class="dropdown-menu">
+                                    <button
+                                        type="button"
+                                        class="dropdown-item text-center"
+                                        onclick = "editar(${dragones[i].id})"
+                                            >
+                                            Editar...
+                                    </button>
+
                                     <div class="dropdown-divider"></div>
 
                                     <button
                                         type="button"
                                         class="dropdown-item text-center"
                                         onclick = "eliminar(${dragones[i].id})"
-                                        >
-                                        Borrar
+                                            >
+                                            Borrar
                                     </button>
 
                                 </div>

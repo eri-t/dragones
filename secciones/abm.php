@@ -90,10 +90,11 @@ $categorias = (new Categoria)->traerCategorias();
                 <h3 class="h6 pb-1 border-bottom mb-3 col-12">Datos del Dragón</h3>
                 <form id="formCrear">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-4 d-flex flex-column justify-content-center align-items-center">
                             <div id="loader" class="position-absolute"></div>
+                            
                             <figure class="figure">
-                                <img src="../img/default.jpg" alt="dragon" class="img-fluid rounded"/>
+                                <img src="../img/default.jpg" alt="Dragón genérico" class="img-fluid rounded" id="preview"/>
                             </figure>
 
                             <div class="form-group mt-0 pt-0">

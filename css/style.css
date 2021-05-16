@@ -109,6 +109,10 @@ header p {
     color: #f2f2f2;
 }
 
+.card-agregar .select2 {
+    color: #495057;
+}
+
 footer {
     background-image: url(../img/background_footer.jpg);
     padding-top: 1em;
