@@ -52,6 +52,9 @@ $auth = new Authentication();
             <?php
             }
             ?>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#modalRegistro">Registrarse</a>
+            </li>
         </ul>
       </div>
     </div>
@@ -62,6 +65,39 @@ $auth = new Authentication();
   </header>
 
   <main>
+
+      <div class="modal fade" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Registro</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <div id="estado" class="alert d-none"></div>
+                      <form id="formRegistro" method="post">
+                          <div class="form-group">
+                              <label for="usuario">Usuario</label>
+                              <input type="text" class="form-control" id="usuario" placeholder="Usuario">
+                          </div>
+                          <div class="form-group">
+                              <label for="email">Email</label>
+                              <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="ejemplo@mail.com">
+                          </div>
+                          <div class="form-group">
+                              <label for="password">Password</label>
+                              <input type="password" class="form-control" id="password" placeholder="Password">
+                          </div>
+                          <div class="d-flex justify-content-center">
+                          <button type="submit" class="btn btn-primary" id="registro">Registrarse</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
     <div class="separador"></div>
     <section id="dragones">
 
@@ -74,17 +110,12 @@ $auth = new Authentication();
 
     </section>
     <div class="separador"></div>
-    <section id="cateDragones">
-      <button id="btnTraerCategorias" type="button">Ver categorias</button>
 
-      <div class="container-fluid">
-          <div id="categoria" class="row justify-content-center pb-3"></div>
-      </div>
-    </section>
-      <div class="separador"></div>
     <script src="js/traer-todos.js"></script>
-    <script src="js/traer-categorias.js"></script>
+      <script src="js/registro.js"></script>
+
   </main>
+
   <footer class="container-fluid">
     <div class="text-center">
       <img src="img/dragon_footer.png" alt="dragon chino">

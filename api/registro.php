@@ -36,3 +36,31 @@ switch ($_SERVER['REQUEST_METHOD']) {
         }
         break;
 }
+
+/*$inputData = file_get_contents('php://input');
+
+$postData = json_decode($inputData, true);
+
+$usuario = $postData['usuario'];
+$email = $postData['email'];
+$password = $postData['password'];
+
+
+$usuario = new Usuario();
+$exito = $usuario->crearUsuario([
+    'usuario' => $usuario,
+    'email' => $email,
+    'password' => $password,
+]);
+
+if ($exito) {
+    echo json_encode([
+        'success' => true,
+        'msg' => 'El usuario se agregó con éxito.',
+    ]);
+} else {
+    echo json_encode([
+        'success' => false,
+        'msg' => 'Ocurrió un error al tratar de agregar el usuario',
+    ]);
+}*/
