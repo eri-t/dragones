@@ -110,7 +110,14 @@ $auth = new Authentication();
 
     </section>
     <div class="separador"></div>
+    <section id="cateDragones">
+      <button id="btnTraerCategorias" type="button">Ver categorias</button>
 
+      <div class="container-fluid">
+          <div id="categoria" class="row justify-content-center pb-3"></div>
+      </div>
+    </section>
+      <div class="separador"></div>
     <script src="js/traer-todos.js"></script>
       <script src="js/registro.js"></script>
 
