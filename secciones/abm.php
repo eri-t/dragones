@@ -1,4 +1,5 @@
 <?php
+/*
 require_once __DIR__ . '/../autoload.php';
 
 $auth = new Authentication();
@@ -7,7 +8,7 @@ if(!$auth->isAuthenticated()) {
     header('Location: ../login.php');
     exit;
 }
-
+*/
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -29,7 +30,7 @@ if(!$auth->isAuthenticated()) {
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Dragones</a>
+      <a class="navbar-brand" href="../index.php">Dragones</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -42,8 +43,9 @@ if(!$auth->isAuthenticated()) {
           <li class="nav-item">
             <a class="nav-link active" href="#">ABM</a>
           </li>
+          
             <?php
-            if(!$auth->isAuthenticated()){
+          /*  if(!$auth->isAuthenticated()){
                 ?>
                 <li class="nav-item">
                     <a class="nav-link" href="../login.php">Iniciar Sesión</a>
@@ -57,7 +59,9 @@ if(!$auth->isAuthenticated()) {
                 </li>
                 <?php
             }
+            */
             ?>
+            
         </ul>
       </div>
     </div>
@@ -80,7 +84,7 @@ if(!$auth->isAuthenticated()) {
                     <div class="row">
                         <div class="col-4">
                             <figure class="figure">
-                                <img src="../img/chinese-dragons.jpg" alt="dragon" class="img-fluid rounded"/>
+                                <img src="../img/default.jpg" alt="dragon" class="img-fluid rounded"/>
                             </figure>
 
                             <div class="form-group mt-0 pt-0">

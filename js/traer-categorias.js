@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     function traerCategorias() {
-        fetch('api/categoria.php')
+        fetch('api/categorias.php')
             .then(response => response.json())
             .then(categorias => {
                 const div = document.getElementById('categoria');

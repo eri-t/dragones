@@ -1,5 +1,12 @@
+var aNombresCategorias = [];
+
 document.addEventListener('DOMContentLoaded', function () {
-    listarTodos();
+
+    const def = traerNombresCategorias();
+    def.then(function () {
+        listarTodos();
+    });
+
     const mensaje = document.getElementById('mensaje');
 
     const loader = document.getElementById('loader');
@@ -40,8 +47,6 @@ document.addEventListener('DOMContentLoaded', function () {
             descripcion: inputDescripcion.value,
             imagen: imagen,
         };
-
-        //   mensaje.classList.remove('alert', 'alert-danger', 'alert-success');
 
         fetch('../api/dragones.php', {
                 method: 'post',
@@ -110,18 +115,34 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+function traerNombresCategorias() {
+    return fetch('../api/categorias.php')
+        .then(response => response.json())
+        .then(categorias => {
+            for (let i = 0; i < categorias.length; i++) {
+                let fila = {
+                    id: categorias[i].id,
+                    nombre: categorias[i].nombre
+                };
+                aNombresCategorias.push(fila);
+            }
+        });
+}
+
 function listarTodos() {
     fetch('../api/dragones.php')
         .then(response => response.json())
         .then(dragones => {
             const div = document.getElementById('respuesta');
             let salida = "";
+
             for (let i = 0; i < dragones.length; i++) {
+
                 salida += `
                     <tr>
                         <th scope="row"> ${dragones[i].id} </th>
                         <td> ${dragones[i].nombre} </td>
-                        <td> ${dragones[i].categorias_id} </td> 
+                        <td> ${getCategory(dragones[i].categorias_id).nombre} </td> 
                         <td> ${dragones[i].descripcion} </td> 
                         <td> <img src="../img/${dragones[i].imagen}" alt="${dragones[i].nombre}" class="img-fluid"> </td> 
                         <td>
@@ -154,6 +175,12 @@ function listarTodos() {
             }
             div.innerHTML = salida;
         });
+}
+
+function getCategory(pk) {
+    return aNombresCategorias.find(obj => {
+        return obj.id == pk;
+    });
 }
 
 /**
