@@ -90,6 +90,7 @@ switch($_SERVER['REQUEST_METHOD']) {
         // Es decir, enviamos los datos en el cuerpo de la petición, y los parseamos leyendo el
         // php://input y pasándole el resultado al json_decode.
         // La única excepción es el id, que como siempre, va en el query string, y lo sacamos de $_GET.
+                    $id = $_GET['id'];
         break;
 
     case 'PATCH':

@@ -78,17 +78,17 @@ $categorias = (new Categoria)->traerCategorias();
 <section class="container-fluid pt-2" id="tablaAbm">
     <div id="mensaje" class="fade show"></div>
 
-    <button id="agregarDragon" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseCrear" aria-expanded="false" aria-controls="collapseCrear">
+    <button id="botonAgregar" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseForm" aria-expanded="false" aria-controls="collapseForm">
       Agregar Dragón
     </button>
 
-    <div class="collapse" id="collapseCrear">
+    <div class="collapse" id="collapseForm">
 
         <div class="card card-agregar text-left">
-            <h2 class="card-header">Agregar Dragón</h2>
+            <h2 class="card-header"><span id = "accion"></span> Dragón</h2>
             <div class="card-body">
                 <h3 class="h6 pb-1 border-bottom mb-3 col-12">Datos del Dragón</h3>
-                <form id="formCrear">
+                <form id="formDragon">
                     <div class="row">
                         <div class="col-4 d-flex flex-column justify-content-center align-items-center">
                             <div id="loader" class="position-absolute"></div>
@@ -135,7 +135,7 @@ $categorias = (new Categoria)->traerCategorias();
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
-                        <button type="submit" class="btn mt-3" id="botonAgregar">Agregar</button>
+                        <button type="submit" class="btn mt-3" id="botonGuardar">Guardar</button>
                     </div>
                 </form>
             </div>

@@ -65,17 +65,17 @@ header p {
     letter-spacing: 0.025em;
     font-size: 1.125em;
     height: 70px;
-    padding: 0px 35px;
+    padding: 0 35px;
     box-shadow: inset 0 0 25px 1px rgb(0,0,0);
     margin-top: 1em;
     margin-bottom: 1em;
 }
 
-#btnTraerTodos:focus, #agregarDragon:focus, #iniciarSesion:focus{
-    outline: 0px;
+#btnTraerTodos:focus, #botonAgregar:focus, #iniciarSesion:focus{
+    outline: 0;
 }
 
-#iniciarSesion, #agregarDragon, #botonAgregar  {
+#iniciarSesion, #botonAgregar, #botonGuardar  {
     line-height: 1;
     text-transform: uppercase;
     border: .05em solid rgb(102, 0, 0) ;

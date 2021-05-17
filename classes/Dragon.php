@@ -106,9 +106,33 @@ class Dragon implements JsonSerializable
         return true;
     }
 
-    public function editar()
+    /**
+     * Edita un dragón en la base de datos.
+     *
+     * @param int $id
+     * @param array $data
+     * @return bool
+     */
+    public function editar(int $id, array $data): bool
     {
         $db = DBConnection::getConnection();
+        $query = "SELECT * FROM dragones WHERE id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->execute([$id]);
+
+        if(!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            return false;
+        }
+
+        $queryEditar = "UPDATE dragones SET (categorias_id, nombre, descripcion, imagen) 
+                  VALUES (:categorias_id, :nombre, :descripcion, :imagen) WHERE id = ?";
+        $stmt = $db->prepare($queryEditar);
+        $stmt->execute([$id]);
+
+        if(!$stmt->execute($data)) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -128,6 +152,9 @@ class Dragon implements JsonSerializable
             return false;
         }
 
+        $dragon = new self();
+        $dragon->setImagen($fila['imagen']);
+
         $queryEliminar = "DELETE FROM dragones WHERE id = ?";
         $stmt = $db->prepare($queryEliminar);
         $stmt->execute([$id]);
@@ -135,9 +162,6 @@ class Dragon implements JsonSerializable
         if(!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
             return false;
         }
-
-        $dragon = new self();
-        $dragon->setImagen($fila['imagen']);
 
         // borrar archivo:
         $root = explode("classes",__DIR__)[0];

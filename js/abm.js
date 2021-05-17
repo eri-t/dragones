@@ -1,4 +1,30 @@
-var aNombresCategorias = [];
+/**
+ * Va a contener los nombres y ids de las categorías.
+ *
+ * @type {array}
+ */
+let aNombresCategorias = [];
+
+/**
+ * Va a contener la imagen a subir.
+ *
+ * @type {string}
+ */
+let imagen;
+
+/**
+ * Va a contener el texto de la acción del formulario: crear/editar.
+ *
+ * @type {string}
+ */
+let textoAccion = 'Agregar';
+
+/**
+ * Indica si el form muestra la acción de editar (en lugar de agregar, que se muestra por defecto).
+ *
+ * @type {boolean}
+ */
+let modoEdicion = false;
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -10,16 +36,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const mensaje = document.getElementById('mensaje');
     const loader = document.getElementById('loader');
 
+    actualizarAccion();
+
     // Imagen
     const inputImagen = document.getElementById('poster');
     const respuesta = document.getElementById('preview');
-
-    /**
-     * Va a contener la imagen a subir.
-     *
-     * @type {string}
-     */
-    let imagen;
 
     inputImagen.addEventListener('change', function (ev) {
         // Instanciamos la clase FileReader.
@@ -36,35 +57,59 @@ document.addEventListener('DOMContentLoaded', function () {
         reader.readAsDataURL(this.files[0]);
     });
 
-    function crearDragon() {
+    const botonAgregar = document.getElementById('botonAgregar');
+    botonAgregar.addEventListener('click', function () {
+        if (modoEdicion) {
+            textoAccion = 'Agregar';
+            actualizarAccion();
+            // mostrar sección "Form Dragón"
+            $('#collapseForm').collapse('show');
+
+        }
+        modoEdicion = false;
+        console.log(modoEdicion);
+    });
+
+    function guardarDragon(id) {
         const inputNombre = document.getElementById('nombre');
         const inputCategoriaId = document.getElementById('categoria');
         const inputDescripcion = document.getElementById('descripcion');
 
         const data = {
+            id: id,
             nombre: inputNombre.value,
             categorias_id: inputCategoriaId.value,
             descripcion: inputDescripcion.value,
             imagen: imagen,
         };
 
-        fetch('../api/dragones.php', {
-                method: 'post',
+        let method;
+        let path = '../api/dragones.php';
+
+        if (id) {
+            method = 'put';
+            path += `?id=${id}`;
+        } else {
+            method = 'post';
+        }
+
+        fetch(path, {
+                method: method,
                 body: JSON.stringify(data),
             })
             .then(rta => rta.json())
             .then(responseData => {
-                toggleFormElements(formCrear, false);
+                toggleFormElements(formDragon, false);
                 mensaje.classList.add('alert');
                 if (responseData.success) {
                     mensaje.classList.add('alert-success');
                     // restablecer la img default:
                     respuesta.src = '../img/default.jpg';
                     loader.innerHTML = '';
-                    cleanFormElements(formCrear);
+                    cleanFormElements(formDragon);
 
-                    // colapsar sección "Crear Dragón"
-                    $('#collapseCrear').collapse('hide');
+                    // colapsar sección "Form Dragón"
+                    $('#collapseForm').collapse('hide');
 
                     listarTodos();
                 } else {
@@ -74,15 +119,13 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
-    const formCrear = document.getElementById('formCrear');
+    const formDragon = document.getElementById('formDragon');
 
-    formCrear.addEventListener('submit', function (ev) {
+    formDragon.addEventListener('submit', function (ev) {
         ev.preventDefault();
-
         loader.innerHTML = getLoader();
-        toggleFormElements(formCrear, true);
-
-        crearDragon();
+        toggleFormElements(formDragon, true);
+        guardarDragon();
     });
 
     /**
@@ -114,6 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const elems = form.querySelectorAll('input, select, textarea');
         elems.forEach(item => item.value = '');
     }
+
 });
 
 function traerNombresCategorias() {
@@ -185,6 +229,56 @@ function listarTodos() {
         });
 }
 
+/**
+ * Edita una fila por su pk.
+ *
+ * @param {int} id
+ */
+
+function editar(id) {
+    modoEdicion = true;
+    console.log(modoEdicion);
+    textoAccion = 'Editar';
+    actualizarAccion();
+
+    // mostrar sección "Form Dragón"
+    $('#collapseForm').collapse('show');
+
+    fetch(`../api/dragones.php?id=${id}`, {
+            method: 'get',
+        })
+        .then(rta => rta.json())
+        .then(dragon => {
+            const inputNombre = document.getElementById('nombre');
+            const inputCategoriaId = document.getElementById('categoria');
+            const inputDescripcion = document.getElementById('descripcion');
+
+            inputNombre.value = dragon.nombre;
+            // inputCategoriaId.selected = dragon.categorias_id;
+            $('.select2').val(dragon.categorias_id);
+            $('.select2').trigger('change');
+            inputDescripcion.value = dragon.descripcion;
+
+
+
+        });
+}
+
+/**
+ * Actualiza el texto del submit del form.
+ */
+function actualizarAccion() {
+    const accion = document.getElementById('accion');
+    accion.innerHTML = textoAccion;
+}
+
+/**
+ * Devuelve un objeto desde aNombresCategorias por su pk.
+ *
+ * @param {int} id
+ * @return {object}
+ */
+
 function getCategory(pk) {
     return aNombresCategorias.find(obj => {
         return obj.id == pk;
@@ -205,12 +299,12 @@ function eliminar(id) {
         .then(response => {
             mensaje.classList.add('alert');
             if (response.success) {
+                listarTodos();
                 mensaje.classList.add('alert-success');
             } else {
                 mensaje.classList.add('alert-danger');
             }
             mostrarMensaje(response);
-            listarTodos();
         });
 }
 
