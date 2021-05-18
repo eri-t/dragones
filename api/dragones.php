@@ -6,14 +6,13 @@ header("Content-Type: application/json");
 // TODO: Verificar que me haya conectado.
 
 // $_SERVER['REQUEST_METHOD'] retorna el método de la petición.
-switch($_SERVER['REQUEST_METHOD']) {
+switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
-        if(isset($_GET['id'])) {
+        if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $dragon = new Dragon;
             $dragon_por_id = $dragon->traerPorPk($id);
             echo json_encode($dragon_por_id);
-
         } else {
             $dragon = new Dragon;
             $dragones = $dragon->traerTodo();
@@ -27,12 +26,12 @@ switch($_SERVER['REQUEST_METHOD']) {
 
         $postData = json_decode($inputData, true);
 
-        $nombre = $postData['nombre'];             
+        $nombre = $postData['nombre'];
         $categorias_id = $postData['categorias_id'];
         $descripcion = $postData['descripcion'];
 
         sleep(2);
-        if(isset($postData['imagen'])) {
+        if (isset($postData['imagen'])) {
             $imagenParts = explode(',', $postData['imagen']);
             $imagenDecoded = base64_decode($imagenParts[1]);
             // Ahí tenemos la imagen ya decodificada en _memoria_.
@@ -46,10 +45,10 @@ switch($_SERVER['REQUEST_METHOD']) {
 
         // Validamos usando la clase Validator, que más adelante haremos desde 0 en clase.
         // $validator = new Validator($_POST, [
-            // Aplicamos las reglas de validación definidas en la clase que queremos aplicar a cada clave del
-            // array.
+        // Aplicamos las reglas de validación definidas en la clase que queremos aplicar a cada clave del
+        // array.
 
-            /*
+        /*
             'nombre'        => ['required', 'min:3'],
             'categorias_id'  => ['required', 'numeric'],
             */
@@ -71,7 +70,7 @@ switch($_SERVER['REQUEST_METHOD']) {
             'imagen' => $imagenNombre
         ]);
 
-        if($exito) {
+        if ($exito) {
             echo json_encode([
                 'success' => true,
                 'msg' => 'El dragón se agregó con éxito.',
@@ -90,7 +89,52 @@ switch($_SERVER['REQUEST_METHOD']) {
         // Es decir, enviamos los datos en el cuerpo de la petición, y los parseamos leyendo el
         // php://input y pasándole el resultado al json_decode.
         // La única excepción es el id, que como siempre, va en el query string, y lo sacamos de $_GET.
-                    $id = $_GET['id'];
+        $id = $_GET['id'];
+
+        $inputData = file_get_contents('php://input');
+
+        $postData = json_decode($inputData, true);
+
+        $nombre = $postData['nombre'];
+        $categorias_id = $postData['categorias_id'];
+        $descripcion = $postData['descripcion'];
+
+        sleep(2);
+        if (isset($postData['imagen'])) {
+            $imagenParts = explode(',', $postData['imagen']);
+            $imagenDecoded = base64_decode($imagenParts[1]);
+            // Ahí tenemos la imagen ya decodificada en _memoria_.
+            // El paso final sería grabar en disco la imagen.
+            $imagenNombre = time() . ".jpg";
+            file_put_contents('../img/' . $imagenNombre, $imagenDecoded);
+        } else {
+            $imagenNombre = '';
+        }
+
+        // TODO: Validar...
+
+
+        $dragon = new Dragon();
+        $exito = $dragon->editar($id, [
+            'id' => $id,
+            'nombre' => $nombre,
+            'categorias_id' => $categorias_id,
+            'descripcion' => $descripcion,
+            'imagen' => $imagenNombre
+        ]);
+
+        if ($exito) {
+            echo json_encode([
+                'success' => true,
+                'msg' => 'Los cambios se guardaron con éxito.',
+            ]);
+        } else {
+            echo json_encode([
+                'success' => false,
+                'msg' => 'Ocurrió un error al guardar los cambios',
+            ]);
+        }
+
         break;
 
     case 'PATCH':
@@ -102,7 +146,7 @@ switch($_SERVER['REQUEST_METHOD']) {
         $dragon = new Dragon;
         $exito = $dragon->eliminar($id);
 
-        if($exito) {
+        if ($exito) {
             echo json_encode([
                 'success' => true,
                 'msg' => 'El dragón se eliminó con éxito.',

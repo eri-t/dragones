@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Imagen
     const inputImagen = document.getElementById('poster');
-    const respuesta = document.getElementById('preview');
+    const preview = document.getElementById('preview');
 
     inputImagen.addEventListener('change', function (ev) {
         // Instanciamos la clase FileReader.
@@ -50,40 +50,41 @@ document.addEventListener('DOMContentLoaded', function () {
             imagen = reader.result;
 
             // Mostramos una previsualización de la imagen a subir.
-            respuesta.src = imagen;
-            respuesta.alt = "Dragón seleccionado para subir";
+            preview.src = imagen;
         });
 
         reader.readAsDataURL(this.files[0]);
     });
 
     const botonAgregar = document.getElementById('botonAgregar');
-    botonAgregar.addEventListener('click', function () {
+    botonAgregar.addEventListener('click', function (ev) {
+
         if (modoEdicion) {
+            // evitar que se colapse el form:
+            ev.stopPropagation();
             textoAccion = 'Agregar';
             actualizarAccion();
-            // mostrar sección "Form Dragón"
-            $('#collapseForm').collapse('show');
-
+            cleanFormElements(formDragon);
         }
         modoEdicion = false;
-        console.log(modoEdicion);
     });
 
-    function guardarDragon(id) {
+    function guardarDragon() {
+        const inputId = document.getElementById('pk');
         const inputNombre = document.getElementById('nombre');
         const inputCategoriaId = document.getElementById('categoria');
         const inputDescripcion = document.getElementById('descripcion');
 
+        const id = inputId.value;
+
         const data = {
-            id: id,
             nombre: inputNombre.value,
             categorias_id: inputCategoriaId.value,
             descripcion: inputDescripcion.value,
             imagen: imagen,
         };
 
-        let method;
+        let method = '';
         let path = '../api/dragones.php';
 
         if (id) {
@@ -103,8 +104,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 mensaje.classList.add('alert');
                 if (responseData.success) {
                     mensaje.classList.add('alert-success');
-                    // restablecer la img default:
-                    respuesta.src = '../img/default.jpg';
                     loader.innerHTML = '';
                     cleanFormElements(formDragon);
 
@@ -156,6 +155,10 @@ document.addEventListener('DOMContentLoaded', function () {
     function cleanFormElements(form) {
         const elems = form.querySelectorAll('input, select, textarea');
         elems.forEach(item => item.value = '');
+        $('.select2').val('');
+        $('.select2').trigger('change');
+        // restablecer la img default:
+        preview.src = '../img/default.jpg';
     }
 
 });
@@ -237,9 +240,9 @@ function listarTodos() {
 
 function editar(id) {
     modoEdicion = true;
-    console.log(modoEdicion);
     textoAccion = 'Editar';
     actualizarAccion();
+    window.scrollTo(0, 0);
 
     // mostrar sección "Form Dragón"
     $('#collapseForm').collapse('show');
@@ -249,17 +252,29 @@ function editar(id) {
         })
         .then(rta => rta.json())
         .then(dragon => {
+            const inputId = document.getElementById('pk');
             const inputNombre = document.getElementById('nombre');
-            const inputCategoriaId = document.getElementById('categoria');
             const inputDescripcion = document.getElementById('descripcion');
+            const inputImagen = document.getElementById('poster');
+            const inputCategoriaId = document.getElementById('categoria');
 
+            inputId.value = id;
             inputNombre.value = dragon.nombre;
-            // inputCategoriaId.selected = dragon.categorias_id;
-            $('.select2').val(dragon.categorias_id);
-            $('.select2').trigger('change');
             inputDescripcion.value = dragon.descripcion;
 
+            // Recuperar imagen:
 
+            // https://stackoverflow.com/questions/47119426/how-to-set-file-objects-and-length-property-at-filelist-object-where-the-files-a/47172409#47172409
+            const dT = new ClipboardEvent('').clipboardData || // Firefox < 62 workaround exploiting https://bugzilla.mozilla.org/show_bug.cgi?id=1422655
+                new DataTransfer(); // specs compliant (as of March 2018 only Chrome)
+            dT.items.add(new File(['file'], '../img/' + dragon.imagen));
+            inputImagen.files = dT.files;
+
+            preview.src = '../img/' + dragon.imagen;
+
+            // categoría:
+            $('.select2').val(dragon.categorias_id);
+            $('.select2').trigger('change');
 
         });
 }

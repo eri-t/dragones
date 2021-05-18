@@ -3,7 +3,7 @@
 class Dragon implements JsonSerializable
 {
     private $id;
-    private $categoria_id;
+    private $categorias_id;
     private $nombre;
     private $descripcion;
     private $imagen;
@@ -35,14 +35,13 @@ class Dragon implements JsonSerializable
         $db = DBConnection::getConnection();
 
         $query = "SELECT * FROM dragones
-        /* LEFT JOIN categorias ON categorias_id = categorias.id*/
         ORDER BY id DESC";
         $stmt = $db->prepare($query);
         $stmt->execute();
 
         $salida = [];
 
-        while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
             // En cada vuelta, instanciamos un dragón para almacenar los datos del registro.
             $dragon = new self();
             $dragon->setId($fila['id']);
@@ -73,7 +72,7 @@ class Dragon implements JsonSerializable
         $stmt->execute([$id]);
 
         // Si no podemos obtener la fila, retornamos null.
-        if(!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if (!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
             return null;
         }
 
@@ -100,7 +99,7 @@ class Dragon implements JsonSerializable
                   VALUES (:categorias_id, :nombre, :descripcion, :imagen)";
         $stmt = $db->prepare($query);
 
-        if(!$stmt->execute($data)) {
+        if (!$stmt->execute($data)) {
             return false;
         }
         return true;
@@ -116,20 +115,34 @@ class Dragon implements JsonSerializable
     public function editar(int $id, array $data): bool
     {
         $db = DBConnection::getConnection();
+
         $query = "SELECT * FROM dragones WHERE id = ?";
         $stmt = $db->prepare($query);
         $stmt->execute([$id]);
 
-        if(!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        // Si no podemos obtener la fila, retornamos false.
+        if (!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
             return false;
         }
 
-        $queryEditar = "UPDATE dragones SET (categorias_id, nombre, descripcion, imagen) 
-                  VALUES (:categorias_id, :nombre, :descripcion, :imagen) WHERE id = ?";
-        $stmt = $db->prepare($queryEditar);
-        $stmt->execute([$id]);
+        $dragon = new self();
+        $dragon->setId($fila['id']);
+        $dragon->setCategoriasId($fila['categorias_id']);
+        $dragon->setNombre($fila['nombre']);
+        $dragon->setDescripcion($fila['descripcion']);
+        $dragon->setImagen($fila['imagen']);
 
-        if(!$stmt->execute($data)) {
+        $queryEditar = "UPDATE dragones SET 
+            categorias_id = :categorias_id, 
+            nombre = :nombre, 
+            descripcion = :descripcion, 
+            imagen = :imagen
+                WHERE id = :id";
+
+        $stmt2 = $db->prepare($queryEditar);
+        $stmt2->execute($data);
+
+        if (!$stmt2->execute($data)) {
             return false;
         }
         return true;
@@ -148,7 +161,7 @@ class Dragon implements JsonSerializable
         $stmt = $db->prepare($query);
         $stmt->execute([$id]);
 
-        if(!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if (!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
             return false;
         }
 
@@ -159,14 +172,14 @@ class Dragon implements JsonSerializable
         $stmt = $db->prepare($queryEliminar);
         $stmt->execute([$id]);
 
-        if(!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if (!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
             return false;
         }
 
         // borrar archivo:
-        $root = explode("classes",__DIR__)[0];
-        
-        if($dragon["imagen"] != 'default.jpg'):
+        $root = explode("classes", __DIR__)[0];
+
+        if ($dragon["imagen"] != 'default.jpg') :
             unlink($root . '/img/' . $dragon["imagen"]);
         endif;
 
@@ -252,5 +265,4 @@ class Dragon implements JsonSerializable
     {
         $this->imagen = $imagen;
     }
-
 }
