@@ -125,13 +125,6 @@ class Dragon implements JsonSerializable
             return false;
         }
 
-        $dragon = new self();
-        $dragon->setId($fila['id']);
-        $dragon->setCategoriasId($fila['categorias_id']);
-        $dragon->setNombre($fila['nombre']);
-        $dragon->setDescripcion($fila['descripcion']);
-        $dragon->setImagen($fila['imagen']);
-
         $queryEditar = "UPDATE dragones SET 
             categorias_id = :categorias_id, 
             nombre = :nombre, 
