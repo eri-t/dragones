@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
     actualizarAccion();
 
     // Imagen
+    let imgChanged = false; // Flag para cuando se carga una imagen nueva
     const inputImagen = document.getElementById('poster');
     const preview = document.getElementById('preview');
 
@@ -51,6 +52,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Mostramos una previsualización de la imagen a subir.
             preview.src = imagen;
+
+            // Actualizamos el flag:
+            imgChanged = true;
         });
 
         reader.readAsDataURL(this.files[0]);
@@ -81,8 +85,12 @@ document.addEventListener('DOMContentLoaded', function () {
             nombre: inputNombre.value,
             categorias_id: inputCategoriaId.value,
             descripcion: inputDescripcion.value,
-            imagen: imagen,
         };
+
+        // enviar la imagen sólo si se cambió:
+        if (imgChanged) {
+            data.imagen = imagen;
+        }
 
         let method = '';
         let path = '../api/dragones.php';
