@@ -52,7 +52,9 @@ header p {
     padding-top: .5em;
 }
 
+
 #btnTraerTodos {
+
     line-height: 1;
     text-transform: uppercase;
     border: .05em solid rgb(102, 0, 0);
@@ -72,7 +74,9 @@ header p {
     margin-bottom: 1em;
 }
 
+
 #btnTraerTodos:focus, #agregarDragon:focus, #iniciarSesion:focus {
+
     outline: 0;
 }
 
