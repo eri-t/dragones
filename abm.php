@@ -23,7 +23,7 @@ $categorias = (new Categoria)->traerCategorias();
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica:ital@1&family=Reggae+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="/css/select2.min.css">
+  <link rel="stylesheet" href="css/select2.min.css">
   <link rel="stylesheet" href="css/select2-bootstrap4.css">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/jquery-1.11.3.min.js"></script>
@@ -35,7 +35,7 @@ $categorias = (new Categoria)->traerCategorias();
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="../index.php">Dragones</a>
+      <a class="navbar-brand" href="index.php">Dragones</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
