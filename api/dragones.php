@@ -9,6 +9,11 @@ header("Content-Type: application/json");
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
         if (isset($_GET['id'])) {
+
+            $id = $_GET['id'];
+            $dragon = new Dragon;
+            $dragon_por_id = $dragon->traerPorPk($id);
+
             try {
                 $id = $_GET['id'];
                 $dragon = new Dragon;
@@ -35,6 +40,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
                 echo json_encode($response);
             }
+
         } else {
             $dragon = new Dragon;
             $dragones = $dragon->traerTodo();
@@ -64,6 +70,36 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $imagenNombre = '';
         }
         // TODO: Validar...
+    $data = [
+                 "nombre"        => '',
+                 "descripcion"   => '',
+                 "id_categorias" => '',
+             ];
+
+             $rules = [
+               "nombre" => ["required", "min:3"],
+               "id_categorias" => ["required"],
+             ];
+
+                    $validator = new Validator($data, $rules);
+
+
+                    if(!$validator->passes()) {
+                        echo json_encode([
+                            "success" => false,
+                            "error" => $validator->getErrors()
+                        ]);
+                    } else {
+                        echo json_encode([
+                            "success" => true,
+                            "msg" => 'El dragón se agregó con éxito.',
+                        ]);
+                    }
+
+                    echo "el contenido completo del validator: ";
+                    echo '<pre>';
+                    echo print_r($validator);
+                    echo '</pre>';
 
         // Validamos usando la clase Validator, que más adelante haremos desde 0 en clase.
         // $validator = new Validator($_POST, [

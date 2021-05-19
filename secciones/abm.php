@@ -9,6 +9,7 @@ if (!$auth->isAuthenticated()) {
   exit;
 }
 
+
 $categorias = (new Categoria)->traerCategorias();
 
 ?>
@@ -48,20 +49,25 @@ $categorias = (new Categoria)->traerCategorias();
           </li>
 
           <?php
-          if (!$auth->isAuthenticated()) {
-          ?>
-            <li class="nav-item">
-              <a class="nav-link" href="../login.php">Iniciar Sesión</a>
-            </li>
-          <?php
-          } else {
-          ?>
-            <li class="nav-item">
-              <a class="nav-link" href="../acciones/logout.php">Cerrar Sesión</a>
-            </li>
-          <?php
-          }
 
+          
+           if(!$auth->isAuthenticated()){
+                ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="../login.php">Iniciar Sesión</a>
+                </li>
+                <?php
+            }
+            else{
+                ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="../acciones/logout.php">Cerrar Sesión</a>
+                </li>
+                <?php
+            }
+          
+
+          
           ?>
 
         </ul>
@@ -89,7 +95,11 @@ $categorias = (new Categoria)->traerCategorias();
                 <div id="loader" class="position-absolute"></div>
 
                 <figure class="figure">
+
+                  
                   <img src="../img/default.jpg" alt="Dragón" class="img-fluid rounded" id="preview" />
+
+                  
                 </figure>
 
                 <div class="form-group mt-0 pt-0">

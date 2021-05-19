@@ -70,9 +70,11 @@ class Dragon implements JsonSerializable
         $stmt = $db->prepare($query);
         $stmt->execute([$id]);
 
+
         // Si no podemos obtener la fila:
         if (!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
             throw new Exception('El dragón solicitado no existe.');
+
         }
 
         $dragon = new self();

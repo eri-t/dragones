@@ -251,6 +251,7 @@ function editar(id) {
             method: 'get',
         })
         .then(rta => rta.json())
+
         .then(response => {
 
             if (response.result.success == true) {
