@@ -9,6 +9,7 @@ if (!$auth->isAuthenticated()) {
   exit;
 }
 
+
 $categorias = (new Categoria)->traerCategorias();
 
 ?>
@@ -21,12 +22,12 @@ $categorias = (new Categoria)->traerCategorias();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica:ital@1&family=Reggae+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/bootstrap.css">
-  <link rel="stylesheet" href="../css/select2.min.css">
-  <link rel="stylesheet" href="../css/select2-bootstrap4.css">
-  <link rel="stylesheet" href="../css/style.css">
-  <script src="../js/jquery-1.11.3.min.js"></script>
-  <script src="../js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="/css/select2.min.css">
+  <link rel="stylesheet" href="css/select2-bootstrap4.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
 
   <title>Dragones</title>
 </head>
@@ -48,20 +49,25 @@ $categorias = (new Categoria)->traerCategorias();
           </li>
 
           <?php
-          if (!$auth->isAuthenticated()) {
-          ?>
-            <li class="nav-item">
-              <a class="nav-link" href="login.php">Iniciar Sesión</a>
-            </li>
-          <?php
-          } else {
-          ?>
-            <li class="nav-item">
-              <a class="nav-link" href="acciones/logout.php">Cerrar Sesión</a>
-            </li>
-          <?php
-          }
 
+          
+           if(!$auth->isAuthenticated()){
+                ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.php">Iniciar Sesión</a>
+                </li>
+                <?php
+            }
+            else{
+                ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="acciones/logout.php">Cerrar Sesión</a>
+                </li>
+                <?php
+            }
+          
+
+          
           ?>
 
         </ul>
@@ -89,7 +95,11 @@ $categorias = (new Categoria)->traerCategorias();
                 <div id="loader" class="position-absolute"></div>
 
                 <figure class="figure">
+
+                  
                   <img src="../img/default.jpg" alt="Dragón" class="img-fluid rounded" id="preview" />
+
+                  
                 </figure>
 
                 <div class="form-group mt-0 pt-0">
