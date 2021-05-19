@@ -57,11 +57,10 @@ class Dragon implements JsonSerializable
     }
 
     /**
-     * Retorna el dragón al que pertenece la $id.
-     * De no existir, retorna null.
+     * Retorna un objeto que contiene el resultado, y el dragón al que pertenece la $id, o null si no existe.
      *
      * @param int $id
-     * @return Dragon|null
+     * @return object
      */
     public function traerPorPK(int $id)
     {
@@ -71,9 +70,9 @@ class Dragon implements JsonSerializable
         $stmt = $db->prepare($query);
         $stmt->execute([$id]);
 
-        // Si no podemos obtener la fila, retornamos null.
+        // Si no podemos obtener la fila:
         if (!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            return null;
+            throw new Exception('El dragón solicitado no existe.');
         }
 
         $dragon = new self();
