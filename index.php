@@ -32,7 +32,7 @@ $auth = new Authentication();
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="secciones/abm.php">ABM</a>
+            <a class="nav-link" href="abm.php">ABM</a>
           </li>
           <?php
           if (!$auth->isAuthenticated()) {

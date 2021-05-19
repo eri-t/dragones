@@ -34,7 +34,7 @@ if (isset($_SESSION["id"])) {
             <a class="nav-link" aria-current="page" href="index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="secciones/abm.php">ABM</a>
+            <a class="nav-link" href="abm.php">ABM</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="#">Iniciar Sesión</a>

@@ -5,7 +5,7 @@ require_once '../autoload.php';
 $auth = new Authentication();
 
 if (!$auth->isAuthenticated()) {
-  header('Location: ../login.php');
+  header('Location: login.php');
   exit;
 }
 
@@ -22,12 +22,12 @@ $categorias = (new Categoria)->traerCategorias();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica:ital@1&family=Reggae+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/bootstrap.css">
-  <link rel="stylesheet" href="../css/select2.min.css">
-  <link rel="stylesheet" href="../css/select2-bootstrap4.css">
-  <link rel="stylesheet" href="../css/style.css">
-  <script src="../js/jquery-1.11.3.min.js"></script>
-  <script src="../js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/select2.min.css">
+  <link rel="stylesheet" href="css/select2-bootstrap4.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
 
   <title>Dragones</title>
 </head>
@@ -35,14 +35,14 @@ $categorias = (new Categoria)->traerCategorias();
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="../index.php">Dragones</a>
+      <a class="navbar-brand" href="index.php">Dragones</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="../index.php">Home</a>
+            <a class="nav-link" aria-current="page" href="index.php">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="#">ABM</a>
@@ -54,14 +54,14 @@ $categorias = (new Categoria)->traerCategorias();
            if(!$auth->isAuthenticated()){
                 ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="../login.php">Iniciar Sesión</a>
+                    <a class="nav-link" href="login.php">Iniciar Sesión</a>
                 </li>
                 <?php
             }
             else{
                 ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="../acciones/logout.php">Cerrar Sesión</a>
+                    <a class="nav-link" href="acciones/logout.php">Cerrar Sesión</a>
                 </li>
                 <?php
             }
