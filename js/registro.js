@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function (){
+document.addEventListener('DOMContentLoaded', function () {
     const formRegistro = document.getElementById('formRegistro');
 
     function crearUsuario() {
@@ -11,20 +11,18 @@ document.addEventListener('DOMContentLoaded', function (){
             email: inputEmail.value,
             password: inputPassword.value,
         };
-        console.log('respuesta del json', data);
 
         fetch('api/registro.php', {
-            method: 'post',
-            body: JSON.stringify(data),
-        })
-
+                method: 'post',
+                body: JSON.stringify(data),
+            })
             .then(rta => rta.json())
             .then(responseData => {
-               console.log('respuesta del Post', responseData);
+                console.log('respuesta del Post', responseData);
             });
     }
 
-    formRegistro.addEventListener('submit', function (ev){
+    formRegistro.addEventListener('submit', function (ev) {
         ev.preventDefault();
 
         crearUsuario();

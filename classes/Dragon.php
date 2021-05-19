@@ -73,11 +73,6 @@ class Dragon implements JsonSerializable
         // Si no podemos obtener la fila:
         if (!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
             throw new Exception('El dragón solicitado no existe.');
-
-            //$success = false;
-            //$msg = 'El dragón solicitado no existe.';
-            //$dragon = null;
-            //        return null;
         }
 
         $dragon = new self();
