@@ -260,9 +260,10 @@ function editar(id) {
         })
         .then(rta => rta.json())
         .then(response => {
-
+            console.log(response);
+            /* 
             if (response.result.success == true) {
-                const dragon = response.data
+                const dragon = response.data;
 
                 const inputId = document.getElementById('pk');
                 const inputNombre = document.getElementById('nombre');
@@ -293,7 +294,7 @@ function editar(id) {
                 mensaje.classList.add('alert', 'alert-danger');
                 mostrarMensaje(response.result);
             }
-
+*/
 
         });
 }
