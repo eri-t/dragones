@@ -193,7 +193,7 @@ function listarTodos() {
                         <td> ${dragones[i].descripcion} </td> 
                         <td> <img src="../img/${dragones[i].imagen}" alt="${dragones[i].nombre}" class="img-fluid"> </td> 
                         <td>
-                            <div class="btn-group">
+                            
                                 <button
                                     type="button"
                                     class="btn btn-outline-light dropdown-toggle"
@@ -224,7 +224,7 @@ function listarTodos() {
                                     </button>
 
                                 </div>
-                            </div>
+                            
                         </td>
                     </tr>`;
             }
@@ -251,30 +251,41 @@ function editar(id) {
             method: 'get',
         })
         .then(rta => rta.json())
-        .then(dragon => {
-            const inputId = document.getElementById('pk');
-            const inputNombre = document.getElementById('nombre');
-            const inputDescripcion = document.getElementById('descripcion');
-            const inputImagen = document.getElementById('poster');
-            const inputCategoriaId = document.getElementById('categoria');
+        .then(response => {
 
-            inputId.value = id;
-            inputNombre.value = dragon.nombre;
-            inputDescripcion.value = dragon.descripcion;
+            if (response.result.success == true) {
+                const dragon = response.data
 
-            // Recuperar imagen:
+                const inputId = document.getElementById('pk');
+                const inputNombre = document.getElementById('nombre');
+                const inputDescripcion = document.getElementById('descripcion');
+                const inputImagen = document.getElementById('poster');
+                const inputCategoriaId = document.getElementById('categoria');
 
-            // https://stackoverflow.com/questions/47119426/how-to-set-file-objects-and-length-property-at-filelist-object-where-the-files-a/47172409#47172409
-            const dT = new ClipboardEvent('').clipboardData || // Firefox < 62 workaround exploiting https://bugzilla.mozilla.org/show_bug.cgi?id=1422655
-                new DataTransfer(); // specs compliant (as of March 2018 only Chrome)
-            dT.items.add(new File(['file'], '../img/' + dragon.imagen));
-            inputImagen.files = dT.files;
+                inputId.value = id;
+                inputNombre.value = dragon.nombre;
+                inputDescripcion.value = dragon.descripcion;
 
-            preview.src = '../img/' + dragon.imagen;
+                // Recuperar imagen:
 
-            // categoría:
-            $('.select2').val(dragon.categorias_id);
-            $('.select2').trigger('change');
+                // https://stackoverflow.com/questions/47119426/how-to-set-file-objects-and-length-property-at-filelist-object-where-the-files-a/47172409#47172409
+                const dT = new ClipboardEvent('').clipboardData || // Firefox < 62 workaround exploiting https://bugzilla.mozilla.org/show_bug.cgi?id=1422655
+                    new DataTransfer(); // specs compliant (as of March 2018 only Chrome)
+                dT.items.add(new File(['file'], '../img/' + dragon.imagen));
+                inputImagen.files = dT.files;
+
+                preview.src = '../img/' + dragon.imagen;
+
+                // categoría:
+                $('.select2').val(dragon.categorias_id);
+                $('.select2').trigger('change');
+
+            } else {
+                // mostrar mensaje de error
+                mensaje.classList.add('alert', 'alert-danger');
+                mostrarMensaje(response.result);
+            }
+
 
         });
 }

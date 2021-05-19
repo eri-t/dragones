@@ -1,17 +1,13 @@
 <?php
 
 require_once '../autoload.php';
-/*
+
 $auth = new Authentication();
 
-if(!$auth->isAuthenticated()) {
-    header('Location: ../login.php');
-    exit;
+if (!$auth->isAuthenticated()) {
+  header('Location: ../login.php');
+  exit;
 }
-*/
-
-// $titulo = "Nuevo";
-// $action = "crear_experiencias";
 
 $categorias = (new Categoria)->traerCategorias();
 
@@ -52,21 +48,20 @@ $categorias = (new Categoria)->traerCategorias();
           </li>
 
           <?php
-          /*  if(!$auth->isAuthenticated()){
-                ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="../login.php">Iniciar Sesión</a>
-                </li>
-                <?php
-            }
-            else{
-                ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="../acciones/logout.php">Cerrar Sesión</a>
-                </li>
-                <?php
-            }
-            */
+          if (!$auth->isAuthenticated()) {
+          ?>
+            <li class="nav-item">
+              <a class="nav-link" href="../login.php">Iniciar Sesión</a>
+            </li>
+          <?php
+          } else {
+          ?>
+            <li class="nav-item">
+              <a class="nav-link" href="../acciones/logout.php">Cerrar Sesión</a>
+            </li>
+          <?php
+          }
+
           ?>
 
         </ul>
@@ -94,7 +89,7 @@ $categorias = (new Categoria)->traerCategorias();
                 <div id="loader" class="position-absolute"></div>
 
                 <figure class="figure">
-                  <img src="../img/default.jpg" alt="Dragón genérico" class="img-fluid rounded" id="preview" />
+                  <img src="../img/default.jpg" alt="Dragón" class="img-fluid rounded" id="preview" />
                 </figure>
 
                 <div class="form-group mt-0 pt-0">
