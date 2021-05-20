@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     estado.innerHTML = "Iniciaste sesión correctamente. Redireccionando... ";
                     setTimeout(
                         function () {
-                            location.href = 'secciones/abm.php';
+                            location.href = 'abm.php';
                         }, 2000
                     );
 

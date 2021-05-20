@@ -12,7 +12,7 @@ $password = $postData['password'];
 $auth = new Authentication();
 $success = $auth->login($email, $password);
 
-if($auth->login($email, $password)){
+if ($auth->login($email, $password)) {
     echo json_encode([
         'success' => true,
         'msg' => 'El producto se insertó con éxito.',

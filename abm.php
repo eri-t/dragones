@@ -1,6 +1,6 @@
 <?php
 
-require_once '../autoload.php';
+require_once __DIR__ . '/autoload.php';
 
 $auth = new Authentication();
 
@@ -50,24 +50,23 @@ $categorias = (new Categoria)->traerCategorias();
 
           <?php
 
-          
-           if(!$auth->isAuthenticated()){
-                ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.php">Iniciar Sesión</a>
-                </li>
-                <?php
-            }
-            else{
-                ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="acciones/logout.php">Cerrar Sesión</a>
-                </li>
-                <?php
-            }
-          
 
-          
+          if (!$auth->isAuthenticated()) {
+          ?>
+            <li class="nav-item">
+              <a class="nav-link" href="login.php">Iniciar Sesión</a>
+            </li>
+          <?php
+          } else {
+          ?>
+            <li class="nav-item">
+              <a class="nav-link" href="acciones/logout.php">Cerrar Sesión</a>
+            </li>
+          <?php
+          }
+
+
+
           ?>
 
         </ul>
@@ -96,10 +95,10 @@ $categorias = (new Categoria)->traerCategorias();
 
                 <figure class="figure">
 
-                  
-                  <img src="../img/default.jpg" alt="Dragón" class="img-fluid rounded" id="preview" />
 
-                  
+                  <img src="img/default.jpg" alt="Dragón" class="img-fluid rounded" id="preview" />
+
+
                 </figure>
 
                 <div class="form-group mt-0 pt-0">
@@ -173,15 +172,15 @@ $categorias = (new Categoria)->traerCategorias();
 
   <footer class="container-fluid">
     <div class="text-center">
-      <img src="../img/dragon_footer.png" alt="dragon chino">
+      <img src="img/dragon_footer.png" alt="Dragón chino">
       <p>© ERICA TORRICO & FLORENCIA MELLONE</p>
       <p>Parcial 1 | Programación 3 | Clientes Web Mobile</p>
       <p>Primera Escuela de Arte Multimedial Da Vinci</p>
     </div>
   </footer>
 
-  <script src="../js/select2.min.js"></script>
-  <script src="../js/abm.js"></script>
+  <script src="js/select2.min.js"></script>
+  <script src="js/abm.js"></script>
 
   <script>
     $(document).ready(function() {

@@ -54,42 +54,56 @@ class Validator
      * @param array $ruleList
      * @throws Exception
      */
+    /*
     protected function applyRules(string $name, array $ruleList)
     {
         foreach ($ruleList as $ruleName) {
-            if(strpos($ruleName, ':' === false)) {
+            if (strpos($ruleName, ':' === false)) {
                 $method = "_" . $ruleName;
                 if (!method_exists($this, $method)) {
-                   throw new Exception("No existe una regla de validación llamada: " . $ruleName);
+                    throw new Exception("No existe una regla de validación llamada: " . $ruleName);
                 }
                 $this->{$method}($name);
             } else {
-                    $ruleData = explode(':', $ruleName);
-                    $method = "_" . $ruleData[0];
+                $ruleData = explode(':', $ruleName);
+                $method = "_" . $ruleData[0];
                 if (!method_exists($this, $method)) {
-                   throw new Exception("No existe una regla de validación llamada: " . $ruleName);
+                    throw new Exception("No existe una regla de validación llamada: " . $ruleName);
                 }
-                $this->{$method}($name, $ruleData[1]);
+                    echo ($ruleData[1]);
+                $this->{$method}($name, $ruleData[1]); 
             }
         }
     }
-
-    /**
-     * Agrega el $mensaje de error para el $campo.
-     *
-     * @param string $name
-     * @param string $message
-     */
-    protected function registerError($name, string $message)
+*/
+    protected function applyRules(string $name, array $ruleList)
     {
-        // Verificamos si existe ya una posición para el $campo, y sino la creamos.
-        if(!isset($this->errors[$name])) {
-            $this->errors[$name] = [];
+        // $ruleList = ['required', 'min:3']
+        foreach ($ruleList as $ruleName) {
+            $this->applyRule($ruleName, $name);
         }
-
-        // Pusheamos el mensaje.
-        $this->errors[$name][] = $message;
     }
+
+    protected function applyRule(string $ruleName, string $name): void
+    {
+        if (strpos($ruleName, ':') === false) {
+            $method = "_" . $ruleName;
+            if (!method_exists($this, $method)) {
+                throw new Exception('No existe una regla de validación llamada "' . $ruleName . '"');
+            }
+            $this->{$method}($name);
+        } else {
+            $ruleData = explode(':', $ruleName);
+
+            $method = "_" . $ruleData[0];
+            if (!method_exists($this, $method)) {
+                throw new Exception('No existe una regla de validación llamada "' . $ruleName . '"');
+            }
+
+            $this->{$method}($name, $ruleData[1]);
+        }
+    }
+
 
     /**
      * Retorna true si no hubo errores de validación.
@@ -118,7 +132,7 @@ class Validator
      */
     protected function setErrors(string $name, string $message)
     {
-        if(!isset($this->errors["name"])) {
+        if (!isset($this->errors["name"])) {
             $this->errors[$name] = [];
         }
         $this->errors[$name][] = $message;
@@ -133,11 +147,11 @@ class Validator
     {
         $value = $this->data[$name];
         // Realizamos la validación, y si falla, guardamos un mensaje de error.
-        if(empty($value)) {
-            $this->setErrors($name, "El " . $name . " no puede quedar vacío.");
-            return false;
+        if (empty($value)) {
+            $this->setErrors($name, "El campo " . $name . " no puede quedar vacío.");
+            //  return false;
         }
-        return true;
+        //   return true;
     }
 
     /**
@@ -148,12 +162,12 @@ class Validator
      */
     protected function _numeric(string $name)
     {
-       $value = $this->data[$name];
-       if(!is_numeric($value)){
-           $this->setErrors($name,"El " . $name . " debe ser un valor numérico.");
-           return false;
-       }
-       return true;
+        $value = $this->data[$name];
+        if (!is_numeric($value)) {
+            $this->setErrors($name, "El campo " . $name . " debe ser un valor numérico.");
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -166,12 +180,10 @@ class Validator
     protected function _min($name, $long)
     {
         $value = $this->data[$name];
-        if(strlen($value) < $long) {
-            $this->setErrors($name, "El " . $name . " debe tener al menos " . $long . " caracteres.");
+        if (strlen($value) < $long) {
+            $this->setErrors($name, "El campo " . $name . " debe tener al menos " . $long . " caracteres.");
             return false;
         }
         return true;
     }
 }
-
-
