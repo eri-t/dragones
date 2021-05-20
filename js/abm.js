@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         let method = '';
-        let path = '../api/dragones.php';
+        let path = 'api/dragones.php';
 
         if (id) {
             method = 'put';
@@ -94,12 +94,15 @@ document.addEventListener('DOMContentLoaded', function () {
             method = 'post';
         }
 
+        console.log(data);
+
         fetch(path, {
                 method: method,
                 body: JSON.stringify(data),
             })
             .then(rta => rta.json())
             .then(responseData => {
+                console.log(responseData);
                 toggleFormElements(formDragon, false);
                 mensaje.classList.add('alert');
                 if (responseData.success) {
@@ -158,13 +161,13 @@ document.addEventListener('DOMContentLoaded', function () {
         $('.select2').val('');
         $('.select2').trigger('change');
         // restablecer la img default:
-        preview.src = '../img/default.jpg';
+        preview.src = 'img/default.jpg';
     }
 
 });
 
 function traerNombresCategorias() {
-    return fetch('../api/categorias.php')
+    return fetch('api/categorias.php')
         .then(response => response.json())
         .then(categorias => {
             for (let i = 0; i < categorias.length; i++) {
@@ -178,7 +181,7 @@ function traerNombresCategorias() {
 }
 
 function listarTodos() {
-    fetch('../api/dragones.php')
+    fetch('api/dragones.php')
         .then(response => response.json())
         .then(dragones => {
             const div = document.getElementById('respuesta');
@@ -191,7 +194,7 @@ function listarTodos() {
                         <td> ${dragones[i].nombre} </td>
                         <td> ${getCategory(dragones[i].categorias_id).nombre} </td> 
                         <td> ${dragones[i].descripcion} </td> 
-                        <td> <img src="../img/${dragones[i].imagen}" alt="${dragones[i].nombre}" class="img-fluid"> </td> 
+                        <td> <img src="img/${dragones[i].imagen}" alt="${dragones[i].nombre}" class="img-fluid"> </td> 
                         <td>
                             
                                 <button
@@ -247,7 +250,7 @@ function editar(id) {
     // mostrar sección "Form Dragón"
     $('#collapseForm').collapse('show');
 
-    fetch(`../api/dragones.php?id=${id}`, {
+    fetch(`api/dragones.php?id=${id}`, {
             method: 'get',
         })
         .then(rta => rta.json())
@@ -319,7 +322,7 @@ function getCategory(pk) {
  */
 
 function eliminar(id) {
-    fetch(`../api/dragones.php?id=${id}`, {
+    fetch(`api/dragones.php?id=${id}`, {
             method: 'delete',
         })
         .then(rta => rta.json())

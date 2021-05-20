@@ -40,7 +40,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
                 echo json_encode($response);
             }
-
         } else {
             $dragon = new Dragon;
             $dragones = $dragon->traerTodo();
@@ -58,7 +57,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $categorias_id = $postData['categorias_id'];
         $descripcion = $postData['descripcion'];
 
-        sleep(2);
+        sleep(2); // para mostrar el loader
+
         if (isset($postData['imagen'])) {
             $imagenParts = explode(',', $postData['imagen']);
             $imagenDecoded = base64_decode($imagenParts[1]);
@@ -70,37 +70,51 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $imagenNombre = '';
         }
         // TODO: Validar...
-    $data = [
-                 "nombre"        => '',
-                 "descripcion"   => '',
-                 "id_categorias" => '',
-             ];
+        $data = [
+            "nombre"        => $nombre,
+            "categorias_id" => $categorias_id,
+        ];
 
-             $rules = [
-               "nombre" => ["required", "min:3"],
-               "id_categorias" => ["required"],
-             ];
+        $rules = [
+            "nombre" => ["required", "min:3"],
+            "categorias_id" => ["required"],
+        ];
 
-                    $validator = new Validator($data, $rules);
+        $validator = new Validator($data, $rules);
 
 
-                    if(!$validator->passes()) {
-                        echo json_encode([
-                            "success" => false,
-                            "error" => $validator->getErrors()
-                        ]);
-                    } else {
-                        echo json_encode([
-                            "success" => true,
-                            "msg" => 'El dragón se agregó con éxito.',
-                        ]);
-                    }
+        if ($validator->passes()) {
+            $dragon = new Dragon();
+            $exito = $dragon->crear([
+                'nombre' => $nombre,
+                'categorias_id' => $categorias_id,
+                'descripcion' => $descripcion,
+                'imagen' => $imagenNombre
+            ]);
 
-                    echo "el contenido completo del validator: ";
-                    echo '<pre>';
-                    echo print_r($validator);
-                    echo '</pre>';
-
+            if ($exito) {
+                echo json_encode([
+                    'success' => true,
+                    'msg' => 'El dragón se agregó con éxito.',
+                ]);
+            } else {
+                echo json_encode([
+                    'success' => false,
+                    'msg' => 'Ocurrió un error al tratar de agregar el dragón',
+                ]);
+            }
+        } else {
+            echo json_encode([
+                "success" => false,
+                "msg" => $validator->getErrors()
+            ]);
+        }
+        /*
+        echo "el contenido completo del validator: ";
+        echo '<pre>';
+        echo print_r($validator);
+        echo '</pre>';
+*/
         // Validamos usando la clase Validator, que más adelante haremos desde 0 en clase.
         // $validator = new Validator($_POST, [
         // Aplicamos las reglas de validación definidas en la clase que queremos aplicar a cada clave del
@@ -120,25 +134,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         }
         */
 
-        $dragon = new Dragon();
-        $exito = $dragon->crear([
-            'nombre' => $nombre,
-            'categorias_id' => $categorias_id,
-            'descripcion' => $descripcion,
-            'imagen' => $imagenNombre
-        ]);
 
-        if ($exito) {
-            echo json_encode([
-                'success' => true,
-                'msg' => 'El dragón se agregó con éxito.',
-            ]);
-        } else {
-            echo json_encode([
-                'success' => false,
-                'msg' => 'Ocurrió un error al tratar de agregar el dragón',
-            ]);
-        }
 
         break;
 
