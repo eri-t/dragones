@@ -149,9 +149,9 @@ class Validator
         // Realizamos la validación, y si falla, guardamos un mensaje de error.
         if (empty($value)) {
             $this->setErrors($name, "El campo " . $name . " no puede quedar vacío.");
-            //  return false;
+             return false;
         }
-        //   return true;
+         return true;
     }
 
     /**
