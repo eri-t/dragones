@@ -340,10 +340,21 @@ function eliminar(id) {
 
 /**
  * Muestra el mensaje en la vista
+ * @param response
  */
 
 function mostrarMensaje(response) {
-    mensaje.innerHTML = response.msg;
+    if (response.msg.nombre !== undefined || response.msg.categorias_id !== undefined) {
+        if (response.msg.nombre !== undefined && response.msg.categorias_id !== undefined) {
+            mensaje.innerHTML = response.msg.nombre + " /" + response.msg.categorias_id;
+        } else if(response.msg.nombre !== undefined) {
+            mensaje.innerHTML = response.msg.nombre;
+        } else if(response.msg.categorias_id !== undefined){
+            mensaje.innerHTML = response.msg.categorias_id;
+        }
+    } else {
+        mensaje.innerHTML = response.msg;
+    }
     setTimeout(
         function () {
             quitarMensaje();

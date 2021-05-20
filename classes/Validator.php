@@ -148,10 +148,11 @@ class Validator
         $value = $this->data[$name];
         // Realizamos la validación, y si falla, guardamos un mensaje de error.
         if (empty($value)) {
-            $this->setErrors($name, "El " . $name . " no puede quedar vacío.");
-            //  return false;
+
+            $this->setErrors($name, "El campo " . $name . " no puede quedar vacío.");
+             return false;
         }
-        //   return true;
+         return true;
     }
 
     /**
@@ -164,7 +165,7 @@ class Validator
     {
         $value = $this->data[$name];
         if (!is_numeric($value)) {
-            $this->setErrors($name, "El " . $name . " debe ser un valor numérico.");
+            $this->setErrors($name, "El campo " . $name . " debe ser un valor numérico.");
             return false;
         }
         return true;
@@ -181,7 +182,8 @@ class Validator
     {
         $value = $this->data[$name];
         if (strlen($value) < $long) {
-            $this->setErrors($name, "El " . $name . " debe tener al menos " . $long . " caracteres.");
+            $this->setErrors($name, "El campo " . $name . " debe tener al menos " . $long . " caracteres.");
+
             return false;
         }
         return true;
