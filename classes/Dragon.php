@@ -72,7 +72,6 @@ class Dragon implements JsonSerializable
         // Si no podemos obtener la fila:
         if (!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
             throw new Exception('El dragón solicitado no existe.');
-
         }
 
         $dragon = new self();
@@ -159,20 +158,22 @@ class Dragon implements JsonSerializable
 
         $dragon = new self();
         $dragon->setImagen($fila['imagen']);
+        $imagen = $dragon->imagen;
 
         $queryEliminar = "DELETE FROM dragones WHERE id = ?";
         $stmt = $db->prepare($queryEliminar);
         $stmt->execute([$id]);
 
-        if (!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if (!$stmt->execute([$id])) {
             return false;
         }
 
-        // borrar archivo:
+        // borrar archivo físico:
+
         $root = explode("classes", __DIR__)[0];
 
-        if ($dragon["imagen"] != 'default.jpg') :
-            unlink($root . '/img/' . $dragon["imagen"]);
+        if ($imagen != 'default.jpg') :
+            unlink($root . '/img/' . $imagen);
         endif;
 
         return true;

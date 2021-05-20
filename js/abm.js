@@ -271,8 +271,7 @@ function editar(id) {
         .then(rta => rta.json())
 
         .then(response => {
-            console.log(response);
-            /* 
+
             if (response.result.success == true) {
                 const dragon = response.data;
 
@@ -294,7 +293,7 @@ function editar(id) {
                 dT.items.add(new File(['file'], '../img/' + dragon.imagen));
                 inputImagen.files = dT.files;
 
-                preview.src = '../img/' + dragon.imagen;
+                preview.src = 'img/' + dragon.imagen;
 
                 // categoría:
                 $('.select2').val(dragon.categorias_id);
@@ -305,7 +304,7 @@ function editar(id) {
                 mensaje.classList.add('alert', 'alert-danger');
                 mostrarMensaje(response.result);
             }
-*/
+
 
         });
 }
@@ -363,9 +362,9 @@ function mostrarMensaje(response) {
     if (response.msg.nombre !== undefined || response.msg.categorias_id !== undefined) {
         if (response.msg.nombre !== undefined && response.msg.categorias_id !== undefined) {
             mensaje.innerHTML = response.msg.nombre + " /" + response.msg.categorias_id;
-        } else if(response.msg.nombre !== undefined) {
+        } else if (response.msg.nombre !== undefined) {
             mensaje.innerHTML = response.msg.nombre;
-        } else if(response.msg.categorias_id !== undefined){
+        } else if (response.msg.categorias_id !== undefined) {
             mensaje.innerHTML = response.msg.categorias_id;
         }
     } else {

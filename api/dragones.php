@@ -7,10 +7,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
         if (isset($_GET['id'])) {
 
-            $id = $_GET['id'];
-            $dragon = new Dragon;
-            $dragon_por_id = $dragon->traerPorPk($id);
-
             try {
                 $id = $_GET['id'];
                 $dragon = new Dragon;
@@ -22,7 +18,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
                 $response = new stdClass();
                 $response->result = $result;
-                $response->data = $dragon;
+                $response->data = $dragon_por_id;
 
                 echo json_encode($response);
             } catch (Exception $e) {
@@ -64,7 +60,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $imagenNombre = time() . ".jpg";
             file_put_contents('../img/' . $imagenNombre, $imagenDecoded);
         } else {
-            $imagenNombre = '';
+            $imagenNombre = 'default.jpg';
         }
 
         $data = [
@@ -111,7 +107,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
 
     case 'PUT':
-        
+
         $id = $_GET['id'];
 
         $inputData = file_get_contents('php://input');
