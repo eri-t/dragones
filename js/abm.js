@@ -361,7 +361,7 @@ function eliminar(id) {
 function mostrarMensaje(response) {
     if (response.msg.nombre !== undefined || response.msg.categorias_id !== undefined) {
         if (response.msg.nombre !== undefined && response.msg.categorias_id !== undefined) {
-            mensaje.innerHTML = response.msg.nombre + " /" + response.msg.categorias_id;
+            mensaje.innerHTML = response.msg.nombre + " " + response.msg.categorias_id;
         } else if (response.msg.nombre !== undefined) {
             mensaje.innerHTML = response.msg.nombre;
         } else if (response.msg.categorias_id !== undefined) {

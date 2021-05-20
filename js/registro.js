@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function mostrarMensaje(response) {
    if (response.msg.usuario !== undefined || response.msg.email !== undefined || response.msg.password !== undefined) {
         if (response.msg.usuario !== undefined && response.msg.email !== undefined) {
-            estado.innerHTML = response.msg.usuario + " / " + response.msg.email + " / " + response.msg.password;
+            estado.innerHTML = response.msg.usuario + " " + response.msg.email + " " + response.msg.password;
         } else if(response.msg.usuario !== undefined) {
             estado.innerHTML = response.msg.usuario;
         } else if(response.msg.email !== undefined){
