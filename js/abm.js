@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         let method = '';
-        let path = '../api/dragones.php';
+        let path = 'api/dragones.php';
 
         if (id) {
             method = 'put';
@@ -102,12 +102,15 @@ document.addEventListener('DOMContentLoaded', function () {
             method = 'post';
         }
 
+        console.log(data);
+
         fetch(path, {
                 method: method,
                 body: JSON.stringify(data),
             })
             .then(rta => rta.json())
             .then(responseData => {
+                console.log(responseData);
                 toggleFormElements(formDragon, false);
                 mensaje.classList.add('alert');
                 if (responseData.success) {
@@ -166,13 +169,17 @@ document.addEventListener('DOMContentLoaded', function () {
         $('.select2').val('');
         $('.select2').trigger('change');
         // restablecer la img default:
-        preview.src = '../img/default.jpg';
+        preview.src = 'img/default.jpg';
     }
 
 });
 
+/**
+ * Trae los nombres de las categorías
+ * @returns {Promise<void>} 
+ */
 function traerNombresCategorias() {
-    return fetch('../api/categorias.php')
+    return fetch('api/categorias.php')
         .then(response => response.json())
         .then(categorias => {
             for (let i = 0; i < categorias.length; i++) {
@@ -185,8 +192,11 @@ function traerNombresCategorias() {
         });
 }
 
+/**
+ * Listamos todos los dragones con sus correspondientes datos, traídos de la base de datos.
+ */
 function listarTodos() {
-    fetch('../api/dragones.php')
+    fetch('api/dragones.php')
         .then(response => response.json())
         .then(dragones => {
             const div = document.getElementById('respuesta');
@@ -199,7 +209,7 @@ function listarTodos() {
                         <td> ${dragones[i].nombre} </td>
                         <td> ${getCategory(dragones[i].categorias_id).nombre} </td> 
                         <td> ${dragones[i].descripcion} </td> 
-                        <td> <img src="../img/${dragones[i].imagen}" alt="${dragones[i].nombre}" class="img-fluid"> </td> 
+                        <td> <img src="img/${dragones[i].imagen}" alt="${dragones[i].nombre}" class="img-fluid"> </td> 
                         <td>
                             
                                 <button
@@ -255,10 +265,11 @@ function editar(id) {
     // mostrar sección "Form Dragón"
     $('#collapseForm').collapse('show');
 
-    fetch(`../api/dragones.php?id=${id}`, {
+    fetch(`api/dragones.php?id=${id}`, {
             method: 'get',
         })
         .then(rta => rta.json())
+
         .then(response => {
             console.log(response);
             /* 
@@ -327,7 +338,7 @@ function getCategory(pk) {
  */
 
 function eliminar(id) {
-    fetch(`../api/dragones.php?id=${id}`, {
+    fetch(`api/dragones.php?id=${id}`, {
             method: 'delete',
         })
         .then(rta => rta.json())
@@ -345,10 +356,21 @@ function eliminar(id) {
 
 /**
  * Muestra el mensaje en la vista
+ * @param response
  */
 
 function mostrarMensaje(response) {
-    mensaje.innerHTML = response.msg;
+    if (response.msg.nombre !== undefined || response.msg.categorias_id !== undefined) {
+        if (response.msg.nombre !== undefined && response.msg.categorias_id !== undefined) {
+            mensaje.innerHTML = response.msg.nombre + " /" + response.msg.categorias_id;
+        } else if(response.msg.nombre !== undefined) {
+            mensaje.innerHTML = response.msg.nombre;
+        } else if(response.msg.categorias_id !== undefined){
+            mensaje.innerHTML = response.msg.categorias_id;
+        }
+    } else {
+        mensaje.innerHTML = response.msg;
+    }
     setTimeout(
         function () {
             quitarMensaje();

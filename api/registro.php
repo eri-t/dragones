@@ -11,24 +11,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $usuario = $postData['usuario'];
     $email = $postData['email'];
-    $password = password_hash($postData['password'], PASSWORD_DEFAULT);
+    $password = $postData['password'];
 
-    $usuario_obj = new Usuario();
-    $exito = $usuario_obj->crear([
-        'usuario' => $usuario,
-        'email' => $email,
-        'password' => $password
-    ]);
+    $data = [
+        "usuario"  => $usuario,
+        "email"    => $email,
+        "password" => $password,
+    ];
 
-    if ($exito) {
-        echo json_encode([
-            'success' => true,
-            'msg' => 'El usuario se agregó con éxito.',
+    $rules = [
+        "usuario" => ["required", "min:3"],
+        "email" => ["required"],
+        "password" => ["required", "min:3"],
+    ];
+
+    $validator = new Validator($data, $rules);
+
+
+    if ($validator->passes()) {
+        $password = password_hash($postData['password'], PASSWORD_DEFAULT);
+        $usuario_obj = new Usuario();
+        $exito = $usuario_obj->crear([
+            'usuario' => $usuario,
+            'email' => $email,
+            'password' => $password,
         ]);
+
+        if ($exito) {
+            echo json_encode([
+                'success' => true,
+                'msg' => 'El usuario se agregó con éxito.',
+            ]);
+        } else {
+            echo json_encode([
+                'success' => false,
+                'msg' => 'Ocurrió un error al tratar de agregar el usuario',
+            ]);
+        }
     } else {
         echo json_encode([
-            'success' => false,
-            'msg' => 'Ocurrió un error al tratar de agregar el usuario',
+            "success" => false,
+            "msg" => $validator->getErrors()
         ]);
     }
 }

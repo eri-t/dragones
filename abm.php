@@ -1,13 +1,14 @@
 <?php
 
-require_once '../autoload.php';
+require_once __DIR__ . '/autoload.php';
 
 $auth = new Authentication();
 
 if (!$auth->isAuthenticated()) {
-  header('Location: ../login.php');
+  header('Location: login.php');
   exit;
 }
+
 
 $categorias = (new Categoria)->traerCategorias();
 
@@ -21,12 +22,12 @@ $categorias = (new Categoria)->traerCategorias();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica:ital@1&family=Reggae+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/bootstrap.css">
-  <link rel="stylesheet" href="../css/select2.min.css">
-  <link rel="stylesheet" href="../css/select2-bootstrap4.css">
-  <link rel="stylesheet" href="../css/style.css">
-  <script src="../js/jquery-1.11.3.min.js"></script>
-  <script src="../js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/select2.min.css">
+  <link rel="stylesheet" href="css/select2-bootstrap4.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
 
   <title>Dragones</title>
 </head>
@@ -34,33 +35,37 @@ $categorias = (new Categoria)->traerCategorias();
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="../index.php">Dragones</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="index.php">Dragones</a>
+      <button class="navbar-toggler" type="button" data--toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="../index.php">Home</a>
+            <a class="nav-link" aria-current="page" href="index.php">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="#">ABM</a>
           </li>
 
           <?php
+
+
           if (!$auth->isAuthenticated()) {
           ?>
             <li class="nav-item">
-              <a class="nav-link" href="../login.php">Iniciar Sesión</a>
+              <a class="nav-link" href="login.php">Iniciar Sesión</a>
             </li>
           <?php
           } else {
           ?>
             <li class="nav-item">
-              <a class="nav-link" href="../acciones/logout.php">Cerrar Sesión</a>
+              <a class="nav-link" href="acciones/logout.php">Cerrar Sesión</a>
             </li>
           <?php
           }
+
+
 
           ?>
 
@@ -89,7 +94,11 @@ $categorias = (new Categoria)->traerCategorias();
                 <div id="loader" class="position-absolute"></div>
 
                 <figure class="figure">
-                  <img src="../img/default.jpg" alt="Dragón" class="img-fluid rounded" id="preview" />
+
+
+                  <img src="img/default.jpg" alt="Dragón" class="img-fluid rounded" id="preview" />
+
+
                 </figure>
 
                 <div class="form-group mt-0 pt-0">
@@ -163,15 +172,15 @@ $categorias = (new Categoria)->traerCategorias();
 
   <footer class="container-fluid">
     <div class="text-center">
-      <img src="../img/dragon_footer.png" alt="dragon chino">
+      <img src="img/dragon_footer.png" alt="Dragón chino">
       <p>© ERICA TORRICO & FLORENCIA MELLONE</p>
       <p>Parcial 1 | Programación 3 | Clientes Web Mobile</p>
       <p>Primera Escuela de Arte Multimedial Da Vinci</p>
     </div>
   </footer>
 
-  <script src="../js/select2.min.js"></script>
-  <script src="../js/abm.js"></script>
+  <script src="js/select2.min.js"></script>
+  <script src="js/abm.js"></script>
 
   <script>
     $(document).ready(function() {

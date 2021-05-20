@@ -31,7 +31,6 @@ class Dragon implements JsonSerializable
      */
     public function traerTodo(): array
     {
-        // Pedimos la conexión a la clase DBConnection...
         $db = DBConnection::getConnection();
 
         $query = "SELECT * FROM dragones
@@ -42,7 +41,6 @@ class Dragon implements JsonSerializable
         $salida = [];
 
         while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            // En cada vuelta, instanciamos un dragón para almacenar los datos del registro.
             $dragon = new self();
             $dragon->setId($fila['id']);
             $dragon->setCategoriasId($fila['categorias_id']);
@@ -70,9 +68,11 @@ class Dragon implements JsonSerializable
         $stmt = $db->prepare($query);
         $stmt->execute([$id]);
 
+
         // Si no podemos obtener la fila:
         if (!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
             throw new Exception('El dragón solicitado no existe.');
+
         }
 
         $dragon = new self();

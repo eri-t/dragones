@@ -3,12 +3,14 @@ require '../autoload.php';
 
 header("Content-Type: application/json");
 
-// TODO: Verificar que me haya conectado.
-
-// $_SERVER['REQUEST_METHOD'] retorna el método de la petición.
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
         if (isset($_GET['id'])) {
+
+            $id = $_GET['id'];
+            $dragon = new Dragon;
+            $dragon_por_id = $dragon->traerPorPk($id);
+
             try {
                 $id = $_GET['id'];
                 $dragon = new Dragon;
@@ -52,7 +54,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $categorias_id = $postData['categorias_id'];
         $descripcion = $postData['descripcion'];
 
-        sleep(2);
+        sleep(2); // para mostrar el loader
+
         if (isset($postData['imagen'])) {
             $imagenParts = explode(',', $postData['imagen']);
             $imagenDecoded = base64_decode($imagenParts[1]);
@@ -63,54 +66,52 @@ switch ($_SERVER['REQUEST_METHOD']) {
         } else {
             $imagenNombre = '';
         }
-        // TODO: Validar...
 
-        // Validamos usando la clase Validator, que más adelante haremos desde 0 en clase.
-        // $validator = new Validator($_POST, [
-        // Aplicamos las reglas de validación definidas en la clase que queremos aplicar a cada clave del
-        // array.
+        $data = [
+            "nombre"        => $nombre,
+            "categorias_id" => $categorias_id,
+        ];
 
-        /*
-            'nombre'        => ['required', 'min:3'],
-            'categorias_id'  => ['required', 'numeric'],
-            */
-        // ]);
+        $rules = [
+            "nombre" => ["required", "min:3"],
+            "categorias_id" => ["required"],
+        ];
 
-        /*
-        if(!$validator->passes()) {
-            $_SESSION['error'] = 'Ocurrieron errores de validación';
-            header('Location: ./../producto-nuevo.php');
-            exit;
-        }
-        */
+        $validator = new Validator($data, $rules);
 
-        $dragon = new Dragon();
-        $exito = $dragon->crear([
-            'nombre' => $nombre,
-            'categorias_id' => $categorias_id,
-            'descripcion' => $descripcion,
-            'imagen' => $imagenNombre
-        ]);
 
-        if ($exito) {
-            echo json_encode([
-                'success' => true,
-                'msg' => 'El dragón se agregó con éxito.',
+        if ($validator->passes()) {
+            $dragon = new Dragon();
+            $exito = $dragon->crear([
+                'nombre' => $nombre,
+                'categorias_id' => $categorias_id,
+                'descripcion' => $descripcion,
+                'imagen' => $imagenNombre
             ]);
+
+            if ($exito) {
+                echo json_encode([
+                    'success' => true,
+                    'msg' => 'El dragón se agregó con éxito.',
+                ]);
+            } else {
+                echo json_encode([
+                    'success' => false,
+                    'msg' => 'Ocurrió un error al tratar de agregar el dragón',
+                ]);
+            }
         } else {
             echo json_encode([
-                'success' => false,
-                'msg' => 'Ocurrió un error al tratar de agregar el dragón',
+                "success" => false,
+                "msg" => $validator->getErrors()
             ]);
         }
+
 
         break;
 
     case 'PUT':
-        // PUT funciona igual que POST.
-        // Es decir, enviamos los datos en el cuerpo de la petición, y los parseamos leyendo el
-        // php://input y pasándole el resultado al json_decode.
-        // La única excepción es el id, que como siempre, va en el query string, y lo sacamos de $_GET.
+        
         $id = $_GET['id'];
 
         $inputData = file_get_contents('php://input');
@@ -157,9 +158,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
             ]);
         }
 
-        break;
-
-    case 'PATCH':
         break;
 
     case 'DELETE':

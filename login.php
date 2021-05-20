@@ -18,6 +18,8 @@ if (isset($_SESSION["id"])) {
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica:ital@1&family=Reggae+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
   <title>Dragones</title>
 </head>
 
@@ -25,7 +27,7 @@ if (isset($_SESSION["id"])) {
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Dragones</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -34,7 +36,7 @@ if (isset($_SESSION["id"])) {
             <a class="nav-link" aria-current="page" href="index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="secciones/abm.php">ABM</a>
+            <a class="nav-link" href="abm.php">ABM</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="#">Iniciar Sesión</a>

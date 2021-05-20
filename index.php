@@ -23,7 +23,7 @@ $auth = new Authentication();
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Dragones</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -32,7 +32,7 @@ $auth = new Authentication();
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="secciones/abm.php">ABM</a>
+            <a class="nav-link" href="abm.php">ABM</a>
           </li>
           <?php
           if (!$auth->isAuthenticated()) {
@@ -100,8 +100,6 @@ $auth = new Authentication();
     <section id="dragones">
 
       <button id="btnTraerTodos" type="button">Ver todos los dragones</button>
-
-      <!-- Acá vamos a imprimir los productos. -->
       <div class="container-fluid">
         <div id="respuesta" class="row justify-content-center pb-3"></div>
       </div>
@@ -109,6 +107,7 @@ $auth = new Authentication();
     </section>
 
     <div class="separador"></div>
+    
     <script src="js/traer-todos.js"></script>
     <script src="js/registro.js"></script>
 

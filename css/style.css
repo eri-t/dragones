@@ -35,7 +35,7 @@ header p {
     height: 4em;
 }
 
-#dragones, #agregarPagina, #cateDragones {
+#dragones, #agregarPagina {
     background-image: url(../img/background.jpg);
     text-align: center;
 }
@@ -52,7 +52,9 @@ header p {
     padding-top: .5em;
 }
 
-#btnTraerTodos, #btnTraerCategorias {
+
+#btnTraerTodos {
+
     line-height: 1;
     text-transform: uppercase;
     border: .05em solid rgb(102, 0, 0);
@@ -72,7 +74,9 @@ header p {
     margin-bottom: 1em;
 }
 
-#btnTraerTodos:focus, #agregarDragon:focus, #iniciarSesion:focus, #btnTraerCategorias:focus {
+
+#btnTraerTodos:focus, #agregarDragon:focus, #iniciarSesion:focus {
+
     outline: 0;
 }
 
@@ -96,6 +100,11 @@ header p {
 
 .dragon, .tabla {
     background-color: rgba(68, 68, 68, 0.3);
+    color: #f2f2f2;
+}
+
+.modal-content {
+    background-color: rgba(68, 68, 68, 0.7);
     color: #f2f2f2;
 }
 
