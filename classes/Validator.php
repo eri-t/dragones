@@ -1,17 +1,4 @@
 <?php
-/*
- * Uso:
- *
- * $validator = new Validator($_POST, [
-    'nombre'        => ['required', 'min:2'],
-    'descripcion'        => ['required'],
-    'id_categorias'  => ['required'],
-]);
-
-if(!$validator->passes()) {
-    print_r($validator->getErrores());
-}
- * */
 class Validator
 {
     /** @var array Los campos a validar. */
@@ -48,34 +35,10 @@ class Validator
     }
 
     /**
-     * Aplica la $ruleList sobre el valor del $name.
-     *
      * @param string $name
      * @param array $ruleList
      * @throws Exception
      */
-    /*
-    protected function applyRules(string $name, array $ruleList)
-    {
-        foreach ($ruleList as $ruleName) {
-            if (strpos($ruleName, ':' === false)) {
-                $method = "_" . $ruleName;
-                if (!method_exists($this, $method)) {
-                    throw new Exception("No existe una regla de validación llamada: " . $ruleName);
-                }
-                $this->{$method}($name);
-            } else {
-                $ruleData = explode(':', $ruleName);
-                $method = "_" . $ruleData[0];
-                if (!method_exists($this, $method)) {
-                    throw new Exception("No existe una regla de validación llamada: " . $ruleName);
-                }
-                    echo ($ruleData[1]);
-                $this->{$method}($name, $ruleData[1]); 
-            }
-        }
-    }
-*/
     protected function applyRules(string $name, array $ruleList)
     {
         // $ruleList = ['required', 'min:3']
@@ -84,6 +47,11 @@ class Validator
         }
     }
 
+    /**
+     * @param string $ruleName
+     * @param string $name
+     * @throws Exception
+     */
     protected function applyRule(string $ruleName, string $name): void
     {
         if (strpos($ruleName, ':') === false) {
@@ -146,7 +114,6 @@ class Validator
     protected function _required(string $name)
     {
         $value = $this->data[$name];
-        // Realizamos la validación, y si falla, guardamos un mensaje de error.
         if (empty($value)) {
 
             $this->setErrors($name, "El campo " . $name . " no puede quedar vacío.");

@@ -3,9 +3,6 @@ require '../autoload.php';
 
 header("Content-Type: application/json");
 
-// TODO: Verificar que me haya conectado.
-
-// $_SERVER['REQUEST_METHOD'] retorna el método de la petición.
 switch($_SERVER['REQUEST_METHOD']) {
     case 'GET':
         if(isset($_GET['id'])) {

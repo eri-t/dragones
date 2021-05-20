@@ -100,8 +100,6 @@ $auth = new Authentication();
     <section id="dragones">
 
       <button id="btnTraerTodos" type="button">Ver todos los dragones</button>
-
-      <!-- Acá vamos a imprimir los productos. -->
       <div class="container-fluid">
         <div id="respuesta" class="row justify-content-center pb-3"></div>
       </div>
@@ -109,6 +107,7 @@ $auth = new Authentication();
     </section>
 
     <div class="separador"></div>
+    
     <script src="js/traer-todos.js"></script>
     <script src="js/registro.js"></script>
 
