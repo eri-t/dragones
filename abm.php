@@ -117,7 +117,6 @@ $categorias = (new Categoria)->traerCategorias();
                   <label for="categoria">Categoría</label>
                   <select name="categoria" id="categoria" class="form-control select2">
                     <option></option>
-                    <option value="0">Sin categoría</option>
                     <?php
 
                     foreach ($categorias as $categoria) :

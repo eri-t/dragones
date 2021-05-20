@@ -103,7 +103,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
             ]);
         }
 
-
         break;
 
     case 'PUT':
