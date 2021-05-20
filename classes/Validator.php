@@ -148,10 +148,11 @@ class Validator
         $value = $this->data[$name];
         // Realizamos la validación, y si falla, guardamos un mensaje de error.
         if (empty($value)) {
+
             $this->setErrors($name, "El campo " . $name . " no puede quedar vacío.");
-            //  return false;
+             return false;
         }
-        //   return true;
+         return true;
     }
 
     /**
@@ -182,6 +183,7 @@ class Validator
         $value = $this->data[$name];
         if (strlen($value) < $long) {
             $this->setErrors($name, "El campo " . $name . " debe tener al menos " . $long . " caracteres.");
+
             return false;
         }
         return true;
