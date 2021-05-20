@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /**
- *
+ * Muestra mensaje de éxito o error en pantalla.
  * @param response
  */
 function mostrarMensaje(response) {

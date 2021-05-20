@@ -3,9 +3,6 @@ require '../autoload.php';
 
 header("Content-Type: application/json");
 
-// TODO: Verificar que me haya conectado.
-
-// $_SERVER['REQUEST_METHOD'] retorna el método de la petición.
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
         if (isset($_GET['id'])) {
@@ -69,7 +66,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         } else {
             $imagenNombre = '';
         }
-        // TODO: Validar...
+
         $data = [
             "nombre"        => $nombre,
             "categorias_id" => $categorias_id,
@@ -109,40 +106,12 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 "msg" => $validator->getErrors()
             ]);
         }
-        /*
-        echo "el contenido completo del validator: ";
-        echo '<pre>';
-        echo print_r($validator);
-        echo '</pre>';
-*/
-        // Validamos usando la clase Validator, que más adelante haremos desde 0 en clase.
-        // $validator = new Validator($_POST, [
-        // Aplicamos las reglas de validación definidas en la clase que queremos aplicar a cada clave del
-        // array.
-
-        /*
-            'nombre'        => ['required', 'min:3'],
-            'categorias_id'  => ['required', 'numeric'],
-            */
-        // ]);
-
-        /*
-        if(!$validator->passes()) {
-            $_SESSION['error'] = 'Ocurrieron errores de validación';
-            header('Location: ./../producto-nuevo.php');
-            exit;
-        }
-        */
-
 
 
         break;
 
     case 'PUT':
-        // PUT funciona igual que POST.
-        // Es decir, enviamos los datos en el cuerpo de la petición, y los parseamos leyendo el
-        // php://input y pasándole el resultado al json_decode.
-        // La única excepción es el id, que como siempre, va en el query string, y lo sacamos de $_GET.
+        
         $id = $_GET['id'];
 
         $inputData = file_get_contents('php://input');
@@ -189,9 +158,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
             ]);
         }
 
-        break;
-
-    case 'PATCH':
         break;
 
     case 'DELETE':

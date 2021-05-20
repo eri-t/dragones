@@ -166,6 +166,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+/**
+ * Trae los nombres de las categorías
+ * @returns {Promise<void>} 
+ */
 function traerNombresCategorias() {
     return fetch('api/categorias.php')
         .then(response => response.json())
@@ -180,6 +184,9 @@ function traerNombresCategorias() {
         });
 }
 
+/**
+ * Listamos todos los dragones con sus correspondientes datos, traídos de la base de datos.
+ */
 function listarTodos() {
     fetch('api/dragones.php')
         .then(response => response.json())
