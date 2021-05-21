@@ -238,7 +238,7 @@ function listarTodos() {
                                     <button
                                         type="button"
                                         class="dropdown-item text-center"
-                                        onclick = "eliminar(${dragones[i].id})"
+                                        onclick = "confirmarBorrado(${dragones[i].id})"
                                             >
                                             Borrar
                                     </button>
@@ -386,4 +386,17 @@ function mostrarMensaje(response) {
 function quitarMensaje() {
     mensaje.classList.remove('alert', 'alert-danger', 'alert-success');
     mensaje.innerHTML = '';
+}
+
+
+/**
+ * Muestra mensaje para confirmar el borrado de un dragón.
+ * @param dragon
+ */
+ function confirmarBorrado(dragon) {
+    let confirmacion = confirm('¿Estás seguro de que quiere elimnar el dragón?');
+
+    if (confirmacion) {
+        eliminar(dragon);
+    }
 }
