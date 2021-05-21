@@ -145,15 +145,39 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $dragon = new Dragon();
         $exito = $dragon->editar($id, $data);
 
-        if ($exito) {
-            echo json_encode([
-                'success' => true,
-                'msg' => 'Los cambios se guardaron con éxito.',
+        $rules = [
+            "nombre" => ["required", "min:3"],
+            "categorias_id" => ["required"],
+        ];
+
+        $validator = new Validator($data, $rules);
+
+
+        if ($validator->passes()) {
+            $dragon = new Dragon();
+            $exito = $dragon->editar($id, [
+                'id' => $id,
+                'nombre' => $nombre,
+                'categorias_id' => $categorias_id,
+                'descripcion' => $descripcion,
+                'imagen' => $imagenNombre
             ]);
+
+            if ($exito) {
+                echo json_encode([
+                    'success' => true,
+                    'msg' => 'Los cambios se guardaron con éxito.',
+                ]);
+            } else {
+                echo json_encode([
+                    'success' => false,
+                    'msg' => 'Ocurrió un error al guardar los cambios',
+                ]);
+            }
         } else {
             echo json_encode([
-                'success' => false,
-                'msg' => 'Ocurrió un error al guardar los cambios',
+                "success" => false,
+                "msg" => $validator->getErrors()
             ]);
         }
 
