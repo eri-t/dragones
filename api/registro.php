@@ -40,12 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($exito) {
             echo json_encode([
                 'success' => true,
-                'msg' => 'El usuario se agregó con éxito.',
+                'msg' => 'El usuario se registró con éxito. Redireccionando...',
             ]);
         } else {
             echo json_encode([
                 'success' => false,
-                'msg' => 'Ocurrió un error al tratar de agregar el usuario',
+                'msg' => 'Ocurrió un error al tratar de registrar el usuario.',
             ]);
         }
     } else {

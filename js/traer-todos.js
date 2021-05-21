@@ -11,16 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="card dragon">
                         <img class="card-img-top" src="img/${dragones[i].imagen}" alt="${dragones[i].nombre}">
                         <div>
-                        <!--
-                            <details>
-                                <summary class="h5">${dragones[i].nombre}</summary>
-                                <p class="card-text">${dragones[i].descripcion}</p>
-                            </details>
-                            -->
-                            <a class="h5 text-white btn btn-block" data-toggle="collapse" href="#collapse${dragones[i].id}" role="button" aria-expanded="false" aria-controls="collapse${dragones[i].id}">
+                            <a class="text-white btn btn-block mb-0 py-3" data-toggle="collapse" href="#collapse${dragones[i].id}" role="button" aria-expanded="false" aria-controls="collapse${dragones[i].id}">
                                 ${dragones[i].nombre}
                             </a>
-
                         </div>
                     </div>
 

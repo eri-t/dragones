@@ -393,8 +393,8 @@ function quitarMensaje() {
  * Muestra mensaje para confirmar el borrado de un dragón.
  * @param dragon
  */
- function confirmarBorrado(dragon) {
-    let confirmacion = confirm('¿Estás seguro de que quiere elimnar el dragón?');
+function confirmarBorrado(dragon) {
+    let confirmacion = confirm('¿Estás seguro de que querés eliminar el dragón?');
 
     if (confirmacion) {
         eliminar(dragon);

@@ -76,6 +76,7 @@ $auth = new Authentication();
           <div class="modal-body">
             <div id="estado" class="alert d-none"></div>
             <form id="formRegistro" method="post">
+              <span class="text-muted form-text h6">(Todos los campos son requeridos)</span>
               <div class="form-group">
                 <label for="usuario">Usuario</label>
                 <input type="text" class="form-control" id="usuario" placeholder="Usuario">
@@ -107,7 +108,7 @@ $auth = new Authentication();
     </section>
 
     <div class="separador"></div>
-    
+
     <script src="js/traer-todos.js"></script>
     <script src="js/registro.js"></script>
 

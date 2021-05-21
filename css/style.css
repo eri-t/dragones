@@ -135,6 +135,22 @@ a:hover {
     text-decoration: none;
 }
 
+.dragon a {
+    font-size: 1.4rem;
+}
+
+.btn:focus {
+    box-shadow: none;
+}
+
+#mensaje {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 99999;
+}
+
 /* Loader */
 
 .lds-ring {

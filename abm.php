@@ -9,7 +9,6 @@ if (!$auth->isAuthenticated()) {
   exit;
 }
 
-
 $categorias = (new Categoria)->traerCategorias();
 
 ?>
@@ -50,7 +49,6 @@ $categorias = (new Categoria)->traerCategorias();
 
           <?php
 
-
           if (!$auth->isAuthenticated()) {
           ?>
             <li class="nav-item">
@@ -64,9 +62,6 @@ $categorias = (new Categoria)->traerCategorias();
             </li>
           <?php
           }
-
-
-
           ?>
 
         </ul>
@@ -95,9 +90,7 @@ $categorias = (new Categoria)->traerCategorias();
 
                 <figure class="figure">
 
-
                   <img src="img/default.jpg" alt="Dragón" class="img-fluid rounded" id="preview" />
-
 
                 </figure>
 
@@ -124,7 +117,6 @@ $categorias = (new Categoria)->traerCategorias();
                       <option value="<?= $categoria->getId(); ?>"><?= $categoria->getNombre(); ?></option>
                     <?php
                     endforeach;
-
                     ?>
                   </select>
                 </div>
