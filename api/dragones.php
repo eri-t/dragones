@@ -131,15 +131,19 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
         // TODO: Validar...
 
-
-        $dragon = new Dragon();
-        $exito = $dragon->editar($id, [
+        $data = [
             'id' => $id,
             'nombre' => $nombre,
             'categorias_id' => $categorias_id,
             'descripcion' => $descripcion,
-            'imagen' => $imagenNombre
-        ]);
+        ];
+
+        if ($imagenNombre != '') {
+            $data['imagen'] = $imagenNombre;
+        }
+
+        $dragon = new Dragon();
+        $exito = $dragon->editar($id, $data);
 
         if ($exito) {
             echo json_encode([

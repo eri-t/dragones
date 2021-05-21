@@ -168,6 +168,8 @@ document.addEventListener('DOMContentLoaded', function () {
         elems.forEach(item => item.value = '');
         $('.select2').val('');
         $('.select2').trigger('change');
+        imagen = null;
+        imgChanged = false;
         // restablecer la img default:
         preview.src = 'img/default.jpg';
     }

@@ -126,9 +126,13 @@ class Dragon implements JsonSerializable
         $queryEditar = "UPDATE dragones SET 
             categorias_id = :categorias_id, 
             nombre = :nombre, 
-            descripcion = :descripcion, 
-            imagen = :imagen
-                WHERE id = :id";
+            descripcion = :descripcion";
+
+        if (isset($data['imagen'])) {
+            $queryEditar .= ", imagen = :imagen";
+        }
+
+        $queryEditar .= " WHERE id = :id";
 
         $stmt2 = $db->prepare($queryEditar);
         $stmt2->execute($data);
