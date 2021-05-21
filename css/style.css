@@ -131,6 +131,10 @@ footer ul {
     list-style: none;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 /* Loader */
 
 .lds-ring {

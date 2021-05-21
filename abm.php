@@ -109,12 +109,12 @@ $categorias = (new Categoria)->traerCategorias();
 
               <div class="col-8">
                 <div>
-                  <label for="nombre">Nombre</label>
+                  <label for="nombre">Nombre <span class="text-muted h6">(Requerido)</span></label>
                   <input type="text" class="form-control" id="nombre" name="nombre">
                 </div>
 
                 <div>
-                  <label for="categoria">Categoría</label>
+                  <label for="categoria">Categoría <span class="text-muted h6">(Requerido)</span></label>
                   <select name="categoria" id="categoria" class="form-control select2">
                     <option></option>
                     <?php
