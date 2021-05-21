@@ -168,6 +168,8 @@ document.addEventListener('DOMContentLoaded', function () {
         elems.forEach(item => item.value = '');
         $('.select2').val('');
         $('.select2').trigger('change');
+        imagen = null;
+        imgChanged = false;
         // restablecer la img default:
         preview.src = 'img/default.jpg';
     }
@@ -236,7 +238,7 @@ function listarTodos() {
                                     <button
                                         type="button"
                                         class="dropdown-item text-center"
-                                        onclick = "eliminar(${dragones[i].id})"
+                                        onclick = "confirmarBorrado(${dragones[i].id})"
                                             >
                                             Borrar
                                     </button>
@@ -384,4 +386,17 @@ function mostrarMensaje(response) {
 function quitarMensaje() {
     mensaje.classList.remove('alert', 'alert-danger', 'alert-success');
     mensaje.innerHTML = '';
+}
+
+
+/**
+ * Muestra mensaje para confirmar el borrado de un dragón.
+ * @param dragon
+ */
+ function confirmarBorrado(dragon) {
+    let confirmacion = confirm('¿Estás seguro de que quiere elimnar el dragón?');
+
+    if (confirmacion) {
+        eliminar(dragon);
+    }
 }
