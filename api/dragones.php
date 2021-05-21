@@ -129,8 +129,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $imagenNombre = '';
         }
 
-        // TODO: Validar...
-
         $data = [
             'id' => $id,
             'nombre' => $nombre,
@@ -142,9 +140,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $data['imagen'] = $imagenNombre;
         }
 
-        $dragon = new Dragon();
-        $exito = $dragon->editar($id, $data);
-
         $rules = [
             "nombre" => ["required", "min:3"],
             "categorias_id" => ["required"],
@@ -152,16 +147,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
         $validator = new Validator($data, $rules);
 
-
         if ($validator->passes()) {
             $dragon = new Dragon();
-            $exito = $dragon->editar($id, [
-                'id' => $id,
-                'nombre' => $nombre,
-                'categorias_id' => $categorias_id,
-                'descripcion' => $descripcion,
-                'imagen' => $imagenNombre
-            ]);
+            $exito = $dragon->editar($id, $data);
 
             if ($exito) {
                 echo json_encode([
