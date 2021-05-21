@@ -15,6 +15,7 @@ class Validator
      * @param array $data
      * @param array $rules
      */
+
     public function __construct(array $data, array $rules)
     {
         $this->data = $data;
@@ -27,6 +28,7 @@ class Validator
     /**
      * Realiza la validación.
      */
+
     protected function validate()
     {
         foreach ($this->rules as $name => $rulelist) {
@@ -39,6 +41,7 @@ class Validator
      * @param array $ruleList
      * @throws Exception
      */
+
     protected function applyRules(string $name, array $ruleList)
     {
         // $ruleList = ['required', 'min:3']
@@ -52,6 +55,7 @@ class Validator
      * @param string $name
      * @throws Exception
      */
+
     protected function applyRule(string $ruleName, string $name): void
     {
         if (strpos($ruleName, ':') === false) {
@@ -72,13 +76,13 @@ class Validator
         }
     }
 
-
     /**
      * Retorna true si no hubo errores de validación.
      * false de lo contrario.
      *
      * @return bool
      */
+
     public function passes(): bool
     {
         return count($this->errors) === 0;
@@ -89,6 +93,7 @@ class Validator
      *
      * @return array
      */
+
     public function getErrors(): array
     {
         return $this->errors;
@@ -98,6 +103,7 @@ class Validator
      * @param string $name
      * @param string $message
      */
+
     protected function setErrors(string $name, string $message)
     {
         if (!isset($this->errors["name"])) {
@@ -105,21 +111,23 @@ class Validator
         }
         $this->errors[$name][] = $message;
     }
+
     /**
      * Valida que el valor del campo no sea vacío.
      *
      * @param string $name
      * @return bool
      */
+
     protected function _required(string $name)
     {
         $value = $this->data[$name];
         if (empty($value)) {
 
             $this->setErrors($name, "El campo " . $name . " no puede quedar vacío.");
-             return false;
+            return false;
         }
-         return true;
+        return true;
     }
 
     /**
@@ -128,6 +136,7 @@ class Validator
      * @param string $name
      * @return bool
      */
+
     protected function _numeric(string $name)
     {
         $value = $this->data[$name];
@@ -145,6 +154,7 @@ class Validator
      * @param int $long
      * @return bool
      */
+
     protected function _min($name, $long)
     {
         $value = $this->data[$name];

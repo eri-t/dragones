@@ -12,6 +12,7 @@ class Usuario implements JsonSerializable
      *
      * @return array
      */
+
     public function jsonSerialize()
     {
         return [
@@ -26,6 +27,7 @@ class Usuario implements JsonSerializable
      * @param $email
      * @return Usuario|null
      */
+
     public function getByEmail($email)
     {
         $db = DBConnection::getConnection();
@@ -53,6 +55,7 @@ class Usuario implements JsonSerializable
      * @return Usuario|null
      */
     public function getByPk($pk)
+
     {
         $db = DBConnection::getConnection();
 
@@ -80,6 +83,7 @@ class Usuario implements JsonSerializable
      * @param array $data
      * @return bool
      */
+
     public function crear(array $data): bool
     {
         $db = DBConnection::getConnection();

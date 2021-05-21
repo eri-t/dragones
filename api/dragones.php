@@ -55,8 +55,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         if (isset($postData['imagen'])) {
             $imagenParts = explode(',', $postData['imagen']);
             $imagenDecoded = base64_decode($imagenParts[1]);
-            // Ahí tenemos la imagen ya decodificada en _memoria_.
-            // El paso final sería grabar en disco la imagen.
+
             $imagenNombre = time() . ".jpg";
             file_put_contents('../img/' . $imagenNombre, $imagenDecoded);
         } else {
@@ -79,10 +78,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
         if ($validator->passes()) {
             $dragon = new Dragon();
             $exito = $dragon->crear([
-                'nombre' => $nombre,
+                'nombre'        => $nombre,
                 'categorias_id' => $categorias_id,
-                'descripcion' => $descripcion,
-                'imagen' => $imagenNombre
+                'descripcion'   => $descripcion,
+                'imagen'        => $imagenNombre
             ]);
 
             if ($exito) {
@@ -194,6 +193,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
     default:
         echo json_encode([
             'success' => false,
-            'El método HTTP pedido no existe.',
+            'msg' => 'El método HTTP pedido no existe.',
         ]);
 }

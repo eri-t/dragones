@@ -1,6 +1,5 @@
 <?php
 
-
 class Authentication
 {
     /**
@@ -13,8 +12,8 @@ class Authentication
         $user = new Usuario();
         $user = $user->getByEmail($email);
 
-        if($user !== null) {
-            if(password_verify($password, $user->getPassword())) {
+        if ($user !== null) {
+            if (password_verify($password, $user->getPassword())) {
                 $this->setAsAuthenticated($user);
                 return true;
             }
@@ -25,6 +24,7 @@ class Authentication
     /**
      * @param Usuario $user
      */
+
     public function setAsAuthenticated(Usuario $user): void
     {
         $_SESSION['id'] = $user->getId();
@@ -38,6 +38,7 @@ class Authentication
     /**
      * @return bool
      */
+
     public function isAuthenticated(): bool
     {
         return isset($_SESSION['id']);
@@ -46,9 +47,10 @@ class Authentication
     /**
      * @return Usuario|null
      */
+
     public function getUser()
     {
-        if(!$this->isAuthenticated()) {
+        if (!$this->isAuthenticated()) {
             return null;
         }
 

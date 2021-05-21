@@ -20,6 +20,6 @@ if ($auth->login($email, $password)) {
 } else {
     echo json_encode([
         'success' => false,
-        'msg' => 'Ocurrió un error al tratar de insertar el producto :(',
+        'msg' => 'Ocurrió un error al tratar de insertar el producto.',
     ]);
 }

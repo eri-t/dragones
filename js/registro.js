@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
     const formRegistro = document.getElementById('formRegistro');
 
-
+    /**
+     * Realiza el fetch a la api para crear el usuario y muestra el resultado en pantalla
+     */
     function crearUsuario() {
         const inputUsuario = document.getElementById('usuario');
         const inputEmail = document.getElementById('email');

@@ -13,6 +13,7 @@ class Dragon implements JsonSerializable
      *
      * @return array
      */
+
     public function jsonSerialize()
     {
         return [
@@ -29,6 +30,7 @@ class Dragon implements JsonSerializable
      *
      * @return array|Dragon[]
      */
+
     public function traerTodo(): array
     {
         $db = DBConnection::getConnection();
@@ -60,6 +62,7 @@ class Dragon implements JsonSerializable
      * @param int $id
      * @return object
      */
+
     public function traerPorPK(int $id)
     {
         $db = DBConnection::getConnection();
@@ -90,6 +93,7 @@ class Dragon implements JsonSerializable
      * @param array $data
      * @return bool
      */
+
     public function crear(array $data): bool
     {
         $db = DBConnection::getConnection();
@@ -110,6 +114,7 @@ class Dragon implements JsonSerializable
      * @param array $data
      * @return bool
      */
+
     public function editar(int $id, array $data): bool
     {
         $db = DBConnection::getConnection();
@@ -149,6 +154,7 @@ class Dragon implements JsonSerializable
      * @param int $id
      * @return bool
      */
+
     public function eliminar(int $id): bool
     {
         $db = DBConnection::getConnection();
@@ -186,6 +192,7 @@ class Dragon implements JsonSerializable
     /**
      * @return mixed
      */
+
     public function getId()
     {
         return $this->id;
@@ -194,6 +201,7 @@ class Dragon implements JsonSerializable
     /**
      * @param mixed $id
      */
+
     public function setId($id)
     {
         $this->id = $id;
@@ -202,6 +210,7 @@ class Dragon implements JsonSerializable
     /**
      * @return mixed
      */
+
     public function getCategoriasId()
     {
         return $this->categorias_id;
@@ -210,6 +219,7 @@ class Dragon implements JsonSerializable
     /**
      * @param mixed $categorias_id
      */
+
     public function setCategoriasId($categorias_id)
     {
         $this->categorias_id = $categorias_id;
@@ -218,6 +228,7 @@ class Dragon implements JsonSerializable
     /**
      * @return mixed
      */
+
     public function getNombre()
     {
         return $this->nombre;
@@ -226,6 +237,7 @@ class Dragon implements JsonSerializable
     /**
      * @param mixed $nombre
      */
+
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
@@ -234,6 +246,7 @@ class Dragon implements JsonSerializable
     /**
      * @return mixed
      */
+
     public function getDescripcion()
     {
         return $this->descripcion;
@@ -242,6 +255,7 @@ class Dragon implements JsonSerializable
     /**
      * @param mixed $descripcion
      */
+
     public function setDescripcion($descripcion)
     {
         $this->descripcion = $descripcion;
@@ -250,6 +264,7 @@ class Dragon implements JsonSerializable
     /**
      * @return mixed
      */
+
     public function getImagen()
     {
         return $this->imagen;
@@ -258,6 +273,7 @@ class Dragon implements JsonSerializable
     /**
      * @param mixed $imagen
      */
+
     public function setImagen($imagen)
     {
         $this->imagen = $imagen;

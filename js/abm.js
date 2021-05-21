@@ -3,6 +3,7 @@
  *
  * @type {array}
  */
+
 let aNombresCategorias = [];
 
 /**
@@ -10,6 +11,7 @@ let aNombresCategorias = [];
  *
  * @type {string}
  */
+
 let imagen;
 
 /**
@@ -17,6 +19,7 @@ let imagen;
  *
  * @type {string}
  */
+
 let textoAccion = 'Agregar';
 
 /**
@@ -24,6 +27,7 @@ let textoAccion = 'Agregar';
  *
  * @type {boolean}
  */
+
 let modoEdicion = false;
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -44,16 +48,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const preview = document.getElementById('preview');
 
     inputImagen.addEventListener('change', function (ev) {
-        // Instanciamos la clase FileReader.
         const reader = new FileReader;
-
         reader.addEventListener('load', function () {
             imagen = reader.result;
 
-            // Mostramos una previsualización de la imagen a subir.
+            // Mostrar una previsualización de la imagen a subir:
             preview.src = imagen;
 
-            // Actualizamos el flag:
+            // Actualizar el flag:
             imgChanged = true;
         });
 
@@ -72,6 +74,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         modoEdicion = false;
     });
+
+    /**
+     * Realiza el fetch a la api para guardar el dragón
+     */
 
     function guardarDragon() {
         const inputId = document.getElementById('pk');
@@ -101,8 +107,6 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             method = 'post';
         }
-
-        console.log(data);
 
         fetch(path, {
                 method: method,
@@ -143,6 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
      *
      * @returns {string}
      */
+
     function getLoader() {
         return `<div class="lds-ring"><div></div><div></div><div></div><div></div></div>`;
     }
@@ -153,6 +158,7 @@ document.addEventListener('DOMContentLoaded', function () {
      * @param {HTMLFormElement} form
      * @param {boolean} disabled
      */
+
     function toggleFormElements(form, disabled = true) {
         const elems = form.querySelectorAll('input, select, textarea, button');
         elems.forEach(item => item.disabled = disabled);
@@ -163,6 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
      *
      * @param {HTMLFormElement} form
      */
+
     function cleanFormElements(form) {
         const elems = form.querySelectorAll('input, select, textarea');
         elems.forEach(item => item.value = '');
@@ -173,13 +180,13 @@ document.addEventListener('DOMContentLoaded', function () {
         // restablecer la img default:
         preview.src = 'img/default.jpg';
     }
-
 });
 
 /**
  * Trae los nombres de las categorías
  * @returns {Promise<void>} 
  */
+
 function traerNombresCategorias() {
     return fetch('api/categorias.php')
         .then(response => response.json())
@@ -195,8 +202,9 @@ function traerNombresCategorias() {
 }
 
 /**
- * Listamos todos los dragones con sus correspondientes datos, traídos de la base de datos.
+ * Lista todos los dragones con sus correspondientes datos, traídos de la base de datos.
  */
+
 function listarTodos() {
     fetch('api/dragones.php')
         .then(response => response.json())
@@ -394,7 +402,7 @@ function quitarMensaje() {
  * @param dragon
  */
 function confirmarBorrado(dragon) {
-    let confirmacion = confirm('¿Estás seguro de que querés eliminar el dragón?');
+    let confirmacion = confirm('¿Estás seguro de eliminar el dragón? Esta acción no puede deshacerse.');
 
     if (confirmacion) {
         eliminar(dragon);

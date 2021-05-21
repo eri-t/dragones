@@ -31,13 +31,12 @@ class Categoria implements JsonSerializable
 
         $salida = [];
 
-        while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
             // En cada vuelta, instanciamos una categoría para almacenar los datos del registro.
             $categoria = new self();
             $categoria->setId($fila['id']);
 
             $categoria->setNombre($fila['nombre']);
-
 
             $salida[] = $categoria;
         }
@@ -59,7 +58,7 @@ class Categoria implements JsonSerializable
         $stmt->execute([$id]);
 
         // Si no podemos obtener la fila, retornamos null.
-        if(!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if (!$fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
             return null;
         }
         $categoria = new self();
@@ -72,6 +71,7 @@ class Categoria implements JsonSerializable
     /**
      * @return mixed
      */
+
     public function getId()
     {
         return $this->id;
@@ -80,6 +80,7 @@ class Categoria implements JsonSerializable
     /**
      * @param mixed $id
      */
+
     public function setId($id): void
     {
         $this->id = $id;
@@ -88,6 +89,7 @@ class Categoria implements JsonSerializable
     /**
      * @return mixed
      */
+
     public function getNombre()
     {
         return $this->nombre;
@@ -96,10 +98,9 @@ class Categoria implements JsonSerializable
     /**
      * @param mixed $nombre
      */
+
     public function setNombre($nombre): void
     {
         $this->nombre = $nombre;
     }
-
-
 }
